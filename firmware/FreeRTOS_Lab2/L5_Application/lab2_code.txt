@@ -1,0 +1,263 @@
+/*
+ *     SocialLedge.com - Copyright (C) 2013
+ *
+ *     This file is part of free software framework for embedded processors.
+ *     You can use it and/or distribute it as long as this copyright header
+ *     remains unmodified.  The code is free for personal use and requires
+ *     permission to use in a commercial product.
+ *
+ *      THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ *      OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ *      MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ *      I SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+ *      CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+ *     You can reach the author of this software at :
+ *          p r e e t . w i k i @ g m a i l . c o m
+ */
+
+/**
+ * @file
+ * @brief This is the application entry point.
+ * 			FreeRTOS and stdio printf is pre-configured to use uart0_min.h before main() enters.
+ * 			@see L0_LowLevel/lpc_sys.h if you wish to override printf/scanf functions.
+ *
+ */
+#include <stdio.h>
+#include "tasks.hpp"
+#include "utilities.h"
+#include "io.hpp"
+#include "LabGPIO.hpp"
+#include "uart0_min.h"
+#include "LabGPIOInterrupts.hpp"
+
+bool turnInternalLEDon;
+
+
+void vControlLED( void * pvParameters )
+{
+    /* Get Parameter */
+    uint32_t param = ((uint32_t)(pvParameters));
+    uint8_t port = param/10;
+    uint8_t pin = param%10;
+    turnInternalLEDon = true;
+    LabGPIO LED (port, pin);
+    LED.setAsOutput();
+    while(1)
+    {
+      if(port == 1)
+      {
+        if(turnInternalLEDon)
+        {
+          LED.setLow();
+        }
+        else if(!turnInternalLEDon)
+        {
+          LED.setHigh();
+        }
+      }
+    }
+}
+
+void theInterruptFunction()
+{
+  printf("In interrupt function");
+  turnInternalLEDon = !turnInternalLEDon;
+  //semaphore to toggle light
+}
+
+
+int main(void)
+{
+    LabGPIOInterrupts startISR;
+    startISR.init();
+    startISR.attachInterruptHandler(0,0,theInterruptFunction, 3);
+
+    scheduler_add_task(new terminalTask(PRIORITY_HIGH));
+	  //xTaskCreate(vTaskCode, "vTaskCode", 512, ( void * ) 'A', tskIDLE_PRIORITY, NULL );
+    xTaskCreate(vControlLED, "vControlInternalLed", 512, ( void *) 10, 1, NULL);
+    //xTaskCreate(vReadSwitch, "vReadInternalSwitch", 512, ( void *) 19, 1, NULL);
+
+    //xTaskCreate(vControlLED, "vControlExternalLed", 512, ( void *) 01, 1, NULL);
+    //xTaskCreate(vReadSwitch, "vReadExternalSwitch", 512, ( void *) 00, 1, NULL);
+    // Alias to vSchedulerStart();
+
+
+    scheduler_start();
+    return -1;
+}
+#include <cstdint>
+
+#ifndef LABGPIOINTERRUPTS_H
+#define LABGPIOINTERRUPTS_H
+
+typedef void (*fptr)(void); //function pointer
+
+class LabGPIOInterrupts
+{
+private:
+    /**
+     * Your job here is to construct a lookup table matrix that correlates a pin
+     * and port to a registered ISR. You may want to make additional probably need
+     * more than one. Be clever here. How can you do this such that you and the
+     * cpu do the least amount of work.
+     */
+
+     static void ( *ISRLookup[2][32]) (void);
+
+public:
+    /**
+     * LabGPIOInterrupts should be a singleton, meaning, only one instance can exist at a time.
+     * Look up how to implement this.
+     */
+    LabGPIOInterrupts();
+    /**
+     * 1) Should setup register "externalIRQHandler" as the EINT3 ISR.
+     * 2) Should configure NVIC to notice EINT3 IRQs.
+     */
+   void funcInsertion(uint8_t port, uint8_t pin, void (* pin_isr) (void));
+   fptr getFunction(uint8_t port, uint8_t pin);
+
+    void init();
+    /**
+     * This handler should place a function pointer within the lookup table for the externalIRQHandler to find.
+     *
+     * @param[in] port         specify the GPIO port
+     * @param[in] pin          specify the GPIO pin to assign an ISR to
+     * @param[in] pin_isr      function to run when the interrupt event occurs
+     * @param[in] condition    condition for the interrupt to occur on. RISING, FALLING or BOTH edges.
+     * @return should return true if valid ports, pins, isrs were supplied and pin isr insertion was sucessful
+     */
+    static bool attachInterruptHandler(uint8_t port, uint32_t pin, fptr pin_isr, uint8_t condition);
+    /**
+     * After the init function has run, this will be executed whenever a proper
+     * EINT3 external GPIO interrupt occurs. This function figure out which pin
+     * has been interrupted and run the ccorrespondingISR for it using the lookup table.
+     *
+     * VERY IMPORTANT! Be sure to clear the interrupt flag that caused this
+     * interrupt, or this function will be called again and again and again, ad infinitum.
+     *
+     * Also, NOTE that your code needs to be able to handle two GPIO interrupts occurring
+     * at the same time.
+     */
+    static void externalIRQHandler(void);
+    ~LabGPIOInterrupts();
+};
+
+#endif
+#include <LabGPIOInterrupts.hpp>
+#include "LPC17xx.h"
+#include "lpc_isr.h"
+#include <cstdint>
+#include <stdio.h>
+
+#include "uart0_min.h"
+     //* 1) Should setup register "externalIRQHandler" as the EINT3 ISR.
+     //* 2) Should configure NVIC to notice EINT3 IRQs.
+
+
+     void ( * LabGPIOInterrupts::ISRLookup[2][32]) (void) = {0};
+
+  LabGPIOInterrupts::LabGPIOInterrupts()
+  {
+
+  }
+
+  void LabGPIOInterrupts::init()
+  {
+    uart0_puts("in init");
+    isr_register(EINT3_IRQn, externalIRQHandler);
+    NVIC_EnableIRQ(EINT3_IRQn);
+  }
+  /**
+   * This handler should place a function pointer within the lookup table for the externalIRQHandler to find.
+   *
+   * @param[in] port         specify the GPIO port
+   * @param[in] pin          specify the GPIO pin to assign an ISR to
+   * @param[in] pin_isr      function to run when the interrupt event occurs
+   * @param[in] condition    condition for the interrupt to occur on. RISING, FALLING or BOTH edges. 0,1,2
+   * @return should return true if valid ports, pins, isrs were supplied and pin isr insertion was sucessful
+   */
+  bool LabGPIOInterrupts::attachInterruptHandler(uint8_t port, uint32_t pin, void (* pin_isr) (void), uint8_t condition)
+  {
+    //funcInsertion(port, pin, pin_isr);
+    uart0_puts("inside attatchinterrupthandler");
+    ISRLookup[port][pin] = pin_isr;
+    if(port == 0)
+    {
+      if(condition == 0)
+      {
+        LPC_GPIOINT->IO0IntEnR |= (1 << pin);
+      }
+      else if(condition == 1)
+      {
+        LPC_GPIOINT->IO0IntEnF |= (1 << pin);
+      }
+      else if(condition == 2)
+      {
+        LPC_GPIOINT->IO0IntEnR |= (1 << pin);
+        LPC_GPIOINT->IO0IntEnF |= (1 << pin);
+      }
+    }
+    else if(port == 2)
+    {
+      {
+        if(condition == 0)
+        {
+          LPC_GPIOINT->IO2IntEnR |= (1 << pin);
+        }
+        else if(condition == 1)
+        {
+          LPC_GPIOINT->IO2IntEnF |= (1 << pin);
+        }
+        else if(condition == 2)
+        {
+          LPC_GPIOINT->IO2IntEnR |= (1 << pin);
+          LPC_GPIOINT->IO2IntEnF |= (1 << pin);
+        }
+      }
+    }
+    else
+    {
+      //wrong port
+    }
+    //portISRLookup[port][pin] = pin_isr;
+    return true;
+  }
+  /**
+   * After the init function has run, this will be executed whenever a proper
+   * EINT3 external GPIO interrupt occurs. This function figure out which pin
+   * has been interrupted and run the ccorrespondingISR for it using the lookup table.
+   *
+   * VERY IMPORTANT! Be sure to clear the interrupt flag that caused this
+   * interrupt, or this function will be called again and again and again, ad infinitum.
+   *
+   * Also, NOTE that your code needs to be able to handle two GPIO interrupts occurring
+   * at the same time.
+   */
+  void LabGPIOInterrupts::externalIRQHandler(void)
+  {
+    int isrPort0Pin = 1, isrPort2Pin = 1;     //pin where interrupt happens
+    printf("uuhh");
+    if(LPC_GPIOINT->IO0IntStatR > 0)          //if an interrupt happens, there will be a 1 somewhere
+    {
+      int temp = LPC_GPIOINT->IO0IntStatR;
+      while(temp != 1)
+      {
+        isrPort0Pin++;
+        temp = temp >> 1;
+      }
+       //get the 1.
+       ISRLookup[0][isrPort0Pin]();
+       LPC_GPIOINT->IO0IntClr |= (1 << isrPort0Pin);
+      //runThis = getFunction(0, isrPort0Pin);
+      //runThis();
+    }
+    //if(LPC_GPIOINT->IO2IntStatR & (1 << pin))
+    //fptr theISR = returnfunctionfromlookuptable;
+    //theISR();
+
+
+
+  }
+  LabGPIOInterrupts::~LabGPIOInterrupts(){}
