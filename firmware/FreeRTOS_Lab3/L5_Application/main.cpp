@@ -1,4 +1,4 @@
-/*
+W/*
  *     SocialLedge.com - Copyright (C) 2013
  *
  *     This file is part of free software framework for embedded processors.
@@ -60,9 +60,29 @@ void vTaskCode(void * pvParameters)
 
 int main(void)
 {
-    LPC_SC->PCONP |= (1 << 7);
-    LPC_SC->PCLKSEL0 |= (1 << 13);
+    LPC_SC->PCONP |= (1 << 7);          //power the pwm
+    
+    LPC_SC->PCLKSEL0 |= (1 << 13);      //select clock = pckl/8 (11)
     LPC_SC->PCLKSEL0 |= (1 << 12);
+
+    LPC_PINCON->PINSEL4 |= 1;            //select PWM for p2.0 (01)
+    LPC_PINCON->PINSEL4 $= ~(1 << 1);
+
+    LPC_PWM1->MR0 = 100;                //cycle time 
+    LPC_PWM1->MR1 = 50;                 //duty cycle
+
+    LPC_PWM1->TCR |= 1;                 //enable counter mode
+    LPC_PWM1->TCR |= (1 << 2);          //PWM enable
+
+    LPC_PWM1->PR = 0;                   //set prescalar = 0?
+    LPC_PWM1->MCR = (1 << 1);           //reset TC if it matches MR0
+
+    LPC_PWM1->LER = (1 << 1);           //put new value into MR1 for next cycle
+
+    LPC_PWM1->PCR = (1 << 9);           //enable pwm output for pwm1
+
+    
+
     //while(1)
     //{
     //    printf("Raw Voltage: %i/n", frontSeat.readADCRawByChannel(3));

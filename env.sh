@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup a base directory:
-SJBASE=/home/marc/SJSU-Dev
+SJBASE=/home/marc/SJSU-Dev-New
 
 # SJSUOne Board Settings:
 SJDEV=/dev/ttyUSB0 # Set this to your board ID
