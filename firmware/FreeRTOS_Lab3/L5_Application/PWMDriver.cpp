@@ -1,4 +1,4 @@
-
+#include <PWMDriver.hpp>
 enum PWM_PIN
 {
     PWM_PIN_2_0,    // PWM1.1
@@ -9,22 +9,18 @@ enum PWM_PIN
     PWM_PIN_2_5,    // PWM1.6
 };
 
-/**
-* Nothing needs to be done within the default constructor
-*/
-PWMDriver() {}
 
 /**
 * 1) Select PWM functionality on all PWM-able pins.
 */  
-void pwmSelectAllPins();
+void pwmSelectAllPins(){}
 
 /**
 * 1) Select PWM functionality of pwm_pin_arg
 *
 * @param pwm_pin_arg is the PWM_PIN enumeration of the desired pin.
 */
-void pwmSelectPin(PWM_PIN pwm_pin_arg);
+void PWMDriver::pwmSelectPin(PWM_PIN pwm_pin_arg){}
 
 /**
 * 1) Power up the PWM peripheral
@@ -40,7 +36,7 @@ void pwmSelectPin(PWM_PIN pwm_pin_arg);
 *
 * @param frequency_Hz is the initial frequency in Hz. 
 */
-void pwmInitSingleEdgeMode(uint32_t frequency_Hz);
+void PWMDriver::pwmInitSingleEdgeMode(uint32_t frequency_Hz){}
 
 /**
 * 1) Convert duty_cycle_percentage to the appropriate match register value (depends on current frequency)
@@ -49,7 +45,7 @@ void pwmInitSingleEdgeMode(uint32_t frequency_Hz);
 * @param pwm_pin_arg is the PWM_PIN enumeration of the desired pin.
 * @param duty_cycle_percentage is the desired duty cycle percentage.
 */
-void setDutyCycle(PWM_PIN pwm_pin_arg, float duty_cycle_percentage);
+void PWMDriver::setDutyCycle(PWM_PIN pwm_pin_arg, float duty_cycle_percentage){}
 
 /**
 * 1) Convert frequency_Hz to the appropriate match register value
@@ -57,4 +53,4 @@ void setDutyCycle(PWM_PIN pwm_pin_arg, float duty_cycle_percentage);
 *
 * @param frequency_hz is the desired frequency of all pwm pins
 */  	
-void setFrequency(uint32_t frequency_Hz);
+void PWMDriver::setFrequency(uint32_t frequency_Hz){}
