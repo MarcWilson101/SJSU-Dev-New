@@ -13,14 +13,51 @@ enum PWM_PIN
 /**
 * 1) Select PWM functionality on all PWM-able pins.
 */  
-void pwmSelectAllPins(){}
+void pwmSelectAllPins()
+{
+    LPC_PINCON->PINSEL4 = (1 << 0) | (1 << 2) | (1 << 4) | (1 << 6) | (1 << 8) | (1 << 10);
+
+}
 
 /**
 * 1) Select PWM functionality of pwm_pin_arg
 *
 * @param pwm_pin_arg is the PWM_PIN enumeration of the desired pin.
 */
-void PWMDriver::pwmSelectPin(PWM_PIN pwm_pin_arg){}
+void PWMDriver::pwmSelectPin(PWM_PIN pwm_pin_arg)
+{
+    switch(pwm_pin_arg)
+    {
+        case 0:
+            LPC_PINCON->PINSEL4 |= 1;
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+        case 1:
+            LPC_PINCON->PINSEL4 |= (1 << 2);
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+        case 2:
+            LPC_PINCON->PINSEL4 |= (1 << 4);
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+        case 3:
+            LPC_PINCON->PINSEL4 |= (1 << 6);
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+        case 4:
+            LPC_PINCON->PINSEL4 |= (1 << 8);
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+        case 5:
+            LPC_PINCON->PINSEL4 |= (1 << 10);
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+        default:
+            LPC_PINCON->PINSEL4 |= 1;
+            LPC_PINCON->PINSEL4 &= ~(1 << 1);
+            break;
+    }
+}
 
 /**
 * 1) Power up the PWM peripheral
@@ -36,7 +73,35 @@ void PWMDriver::pwmSelectPin(PWM_PIN pwm_pin_arg){}
 *
 * @param frequency_Hz is the initial frequency in Hz. 
 */
-void PWMDriver::pwmInitSingleEdgeMode(uint32_t frequency_Hz){}
+void PWMDriver::pwmInitSingleEdgeMode(uint32_t frequency_Hz)
+{
+    LPC_SC->PCONP |= (1 << 6);          //power up pwm peripheral
+        
+    LPC_SC->PCLKSEL0 &= ~(1 << 13);      //select clock = pckl/8 (11)
+    LPC_SC->PCLKSEL0 |= (1 << 12);
+    
+    LPC_PWM1->TCR |= 1;                 //enable counter mode
+    LPC_PWM1->TCR |= (1 << 2);          //PWM enable
+
+    LPC_PWM1->MCR = (1 << 1);           //reset TC if it matches MR0
+
+    setFrequency(frequency_Hz);
+    LPC_PWM1->MR1 = 0;                  //duty cycle
+    LPC_PWM1->MR2 = 0;
+    LPC_PWM1->MR3 = 0;
+    LPC_PWM1->MR4 = 0;
+    LPC_PWM1->MR5 = 0;
+    LPC_PWM1->MR6 = 0;
+
+    LPC_PWM1->LER = (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4);    //put new value into MR1 for next cycle
+    
+    LPC_SC->PCLKSEL0 &= ~(1 << 13);      //select clock = pckl/1 (01)
+    LPC_SC->PCLKSEL0 |= (1 << 12);
+
+    LPC_PWM1->PCR |= (0x3F << 9);           //enable pwm output for pwm1 bits 9-14 set
+    
+    //
+}
 
 /**
 * 1) Convert duty_cycle_percentage to the appropriate match register value (depends on current frequency)
@@ -45,7 +110,33 @@ void PWMDriver::pwmInitSingleEdgeMode(uint32_t frequency_Hz){}
 * @param pwm_pin_arg is the PWM_PIN enumeration of the desired pin.
 * @param duty_cycle_percentage is the desired duty cycle percentage.
 */
-void PWMDriver::setDutyCycle(PWM_PIN pwm_pin_arg, float duty_cycle_percentage){}
+void PWMDriver::setDutyCycle(uint8_t pwm_pin_arg, float duty_cycle_percentage)
+{
+    switch(pwm_pin_arg)
+    {
+        case 0:
+            LPC_PWM1->MR1 = duty_cycle_percentage/41;   // convert 0-4095 to 0-100
+            break;
+        case 1:
+            LPC_PWM1->MR2 = duty_cycle_percentage/41;
+            break;
+        case 2:
+            LPC_PWM1->MR3 = duty_cycle_percentage/41;
+            break;
+        case 3:
+            LPC_PWM1->MR4 = duty_cycle_percentage/41;
+            break;
+        case 4:
+            LPC_PWM1->MR5 = duty_cycle_percentage/41;
+            break;
+        case 5:
+            LPC_PWM1->MR6 = duty_cycle_percentage/41;
+            break;
+        default:
+            LPC_PWM1->MR1 = duty_cycle_percentage/41;
+            break;
+    }
+}
 
 /**
 * 1) Convert frequency_Hz to the appropriate match register value
@@ -53,4 +144,7 @@ void PWMDriver::setDutyCycle(PWM_PIN pwm_pin_arg, float duty_cycle_percentage){}
 *
 * @param frequency_hz is the desired frequency of all pwm pins
 */  	
-void PWMDriver::setFrequency(uint32_t frequency_Hz){}
+void PWMDriver::setFrequency(uint32_t frequency_Hz)
+{
+    LPC_PWM1->MR0 = frequency_Hz;       //cycle time 
+}

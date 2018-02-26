@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "ADCDriver.hpp"
+#include "PWMDriver.hpp"
 
 
 
@@ -41,78 +42,30 @@ inline bool CHECK_BIT(int var, int pos)
     return (bool)(var & (1 << pos));
 }
 
-void vTaskCode(void * pvParameters)
+void vTaskRLED(void * pvParameters)
 {
-    /*
-    char c = (char)((uint32_t)pvParameters);
-    ADCDriver frontSeat;
-    uint8_t myPin = 3;
-    frontSeat.adcInitBurstMode(3);
-    frontSeat.adcSelectPin(myPin);
-    unsigned long ADGDR_Read;
-    int channel = 1;
-    int currentResult;
-    while(1)
+     float brightness;
+     PWMDriver PWM1;
+     PWM1.pwmSelectPin(PWMDriver::PWM_PIN_2_0);
+     PWM1.pwmInitSingleEdgeMode(100);
+     while(1)
     {
-        vTaskDelay(1000);
-        printf("Raw Voltage: %i/n", frontSeat.readADCRawByChannel(3));
+        brightness = frontSeat.readADCRawByChannel(3);
+        PWM1.setDutyCycle(0, brightness);
     }
-    */
-    LPC_SC->PCONP |= (1 << 6);          //power the pwm
-    
-    LPC_PINCON->PINSEL4 |= 1;            //select PWM for p2.0 (01)
-    LPC_PINCON->PINSEL4 &= ~(1 << 1);
-    
-    LPC_PWM1->TCR |= 1;                 //enable counter mode
-    LPC_PWM1->TCR |= (1 << 2);          //PWM enable
 
-    LPC_PWM1->MCR = (1 << 1);           //reset TC if it matches MR0
-
-    LPC_PWM1->MR0 = 100;                //cycle time 
-    LPC_PWM1->MR1 = 10;                 //duty cycle
-    
-    LPC_PWM1->LER = (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4);    //put new value into MR1 for next cycle
-    
-    LPC_SC->PCLKSEL0 &= ~(1 << 13);      //select clock = pckl/8 (11)
-    LPC_SC->PCLKSEL0 |= (1 << 12);
-
-    LPC_PWM1->PCR = (1 << 9);           //enable pwm output for pwm1
 }
 
 
 int main(void)
 {
-    /*
-    LPC_SC->PCONP |= (1 << 7);          //power the pwm
-    
-    LPC_SC->PCLKSEL0 |= (1 << 13);      //select clock = pckl/8 (11)
-    LPC_SC->PCLKSEL0 |= (1 << 12);
-
-    LPC_PINCON->PINSEL4 |= 1;            //select PWM for p2.0 (01)
-    LPC_PINCON->PINSEL4 &= ~(1 << 1);
-
-    LPC_PWM1->MR0 = 100;                //cycle time 
-    LPC_PWM1->MR1 = 90;                 //duty cycle
-
-    LPC_PWM1->TCR |= 1;                 //enable counter mode
-    LPC_PWM1->TCR |= (1 << 2);          //PWM enable
-
-    LPC_PWM1->PR = 475;                   //set prescalar = 0?
-    LPC_PWM1->MCR = (1 << 1);           //reset TC if it matches MR0
-
-    LPC_PWM1->LER = (1 << 1);           //put new value into MR1 for next cycle
-
-    LPC_PWM1->PCR = (1 << 9);           //enable pwm output for pwm1
-
-    while(1){};
-    */
-    //while(1)
-    //{
-    //    printf("Raw Voltage: %i/n", frontSeat.readADCRawByChannel(3));
-    //}
+    ADCDriver frontSeat;
+    frontSeat.adcInitBurstMode(3);
+    frontSeat.adcSelectPin(3);
 
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
-	xTaskCreate(vTaskCode, "vTaskCode", 512, ( void * ) 'A', 1, NULL );
+	xTaskCreate(vTaskRLED, "vTaskRLED", 512, ( void * ) frontSeat, 1, NULL );
+    //xTaskCreate(vTaskPrint, "vTaskPrint", 512, ( void * ) 'A', 1, NULL );
     // Alias to vSchedulerStart();
     scheduler_start();
     return -1;

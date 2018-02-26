@@ -2,6 +2,7 @@
 #define PWM_DRIVER_H_
 
 #include "stdint.h"
+#include "LPC17xx.h"
   
 class PWMDriver
 {
@@ -56,7 +57,7 @@ public:
     * @param pwm_pin_arg is the PWM_PIN enumeration of the desired pin.
     * @param duty_cycle_percentage is the desired duty cycle percentage.
     */
-	void setDutyCycle(PWM_PIN pwm_pin_arg, float duty_cycle_percentage);
+	void setDutyCycle(uint8_t pwm_pin_arg, float duty_cycle_percentage);
   
 	/**
     * 1) Convert frequency_Hz to the appropriate match register value
