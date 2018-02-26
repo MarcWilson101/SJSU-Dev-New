@@ -41,15 +41,12 @@ inline bool CHECK_BIT(int var, int pos)
 {
     return (bool)(var & (1 << pos));
 }
-/*
 
-
-*/
 void vTaskLED(void * pvParameters)
 {
     ADCDriver * adcDriver = static_cast<ADCDriver *>(pvParameters);
     float rawData;
-    float rBrightness, gBrightness, bBrightness;
+    float rBrightness = 0, gBrightness = 0, bBrightness = 0;
     PWMDriver PWMr, PWMg, PWMb;
 
     PWMr.pwmSelectPin(0);
@@ -62,27 +59,126 @@ void vTaskLED(void * pvParameters)
     PWMb.pwmInitSingleEdgeMode(100);
 
 
-
-
+    uint8_t mode = 1;
+    int count = 0;
     while(1)
-    {
-    //vTaskDelay(100);
-    rawData = (adcDriver->readADCRawByChannel(3))/41;
+    {   
+        vTaskDelay(1);
+        count++;
+        if(count == 1000)
+        {
+            printf("rBrightness: %f, gBrightness: %f, bBrightness: %f\n", rBrightness, gBrightness, bBrightness);
+            count = 0;
+        }
+        //vTaskDelay(1000);
+        if(SW.getSwitch(1))
+        {
+            mode = 1;
+        }
+        else if(SW.getSwitch(2))
+        {
+            mode = 2;
+        }
+        else if(SW.getSwitch(3))
+        {
+            mode = 3;
+        }
 
-    rBrightness = rawData;
-    bBrightness = 100 - rawData;
-    if(rawData <= 50)
-    {
-        gBrightness = 100 - (2 * rBrightness);
-    }
-    else if(rawData > 50)
-    {
-        gBrightness = 100 - (2 * bBrightness);
-    }
+        switch(mode)
+        {
+            case 1:
+                 LPC_PINCON->PINSEL4 &= 0;      //deselect all colors
+                 break;
+            case 2:
+                PWMr.pwmSelectPin(0);
+                PWMg.pwmSelectPin(1);
+                PWMb.pwmSelectPin(2);
+                rawData = (adcDriver->readADCRawByChannel(3));
+                //printf("rawData: %f", rawData);
+                rawData = rawData/42;
+                rBrightness = rawData;
+                bBrightness = 100 - rawData;
+                if(rawData <= 50)
+                {
+                    gBrightness = 100 - (2 * rBrightness);
+                }
+                else if(rawData > 50)
+                {
+                    gBrightness = 100 - (2 * bBrightness);
+                }
 
-    PWMr.setDutyCycle(0, rBrightness);
-    PWMg.setDutyCycle(1, gBrightness);
-    PWMb.setDutyCycle(2, bBrightness);
+                PWMr.setDutyCycle(0, rBrightness);
+                PWMg.setDutyCycle(1, gBrightness);
+                PWMb.setDutyCycle(2, bBrightness);
+                //printf("rBrightness: %f, gBrightness: %f, bBrightness: %f\n", rBrightness, gBrightness, bBrightness);
+                break;
+            case 3:
+                LPC_PINCON->PINSEL4 = 0x10;    //turn off all but blue pwm
+                vTaskDelay(100);
+                rawData = (adcDriver->readADCRawByChannel(3))/42;
+                bBrightness = rawData;
+
+                PWMb.setDutyCycle(2, bBrightness);
+                printf("bBrightness: %f\n", bBrightness);
+                break;
+            default:
+                mode = 1;
+                break;
+        }
+        /*
+        if(SW.getSwitch(1))
+        {
+            vTaskDelay(100);
+            while(!SW.getSwitch(1))
+            {
+                vTaskDelay(100);
+                LPC_PINCON->PINSEL4 &= 0;
+            }
+            PWMr.pwmSelectPin(0);
+            PWMg.pwmSelectPin(1);
+            PWMb.pwmSelectPin(2);
+        }
+        else if(SW.getSwitch(2))
+        {
+            //vTaskDelay(100);
+            while(!SW.getSwitch(2))
+            {
+                //vTaskDelay(100);
+                rawData = (adcDriver->readADCRawByChannel(3))/42;
+                rBrightness = rawData;
+                bBrightness = 100 - rawData;
+                if(rawData <= 50)
+                {
+                    gBrightness = 100 - (2 * rBrightness);
+                }
+                else if(rawData > 50)
+                {
+                    gBrightness = 100 - (2 * bBrightness);
+                }
+
+                PWMr.setDutyCycle(0, rBrightness);
+                PWMg.setDutyCycle(1, gBrightness);
+                PWMb.setDutyCycle(2, bBrightness);
+                printf("rBrightness: %f, gBrightness: %f, bBrightness: %f\n", rBrightness, gBrightness, bBrightness);
+            }
+        }
+        else if(SW.getSwitch(3))
+        {
+            //vTaskDelay(100);
+            LPC_PINCON->PINSEL4 = 1;    //turn off all but first pwm
+            while(!SW.getSwitch(3))
+            {
+                vTaskDelay(100);
+                rawData = (adcDriver->readADCRawByChannel(3))/42;
+                rBrightness = rawData;
+
+                PWMr.setDutyCycle(0, rBrightness);
+                printf("rBrightness: %f, gBrightness: %f, bBrightness: %f\n", rBrightness, gBrightness, bBrightness);
+            }
+            PWMg.pwmSelectPin(1);       //turn back on green and blue
+            PWMb.pwmSelectPin(2);
+        }
+*/
     }
 
 }
@@ -96,7 +192,7 @@ int main(void)
 
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
 	xTaskCreate(vTaskLED, "vTaskLED", 512, ( void * ) frontSeat, 1, NULL );
-    
+
     //xTaskCreate(vTaskPrint, "vTaskPrint", 512, ( void * ) 'A', 1, NULL );
     // Alias to vSchedulerStart();
     scheduler_start();

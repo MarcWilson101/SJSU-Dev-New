@@ -83,21 +83,9 @@ void PWMDriver::pwmInitSingleEdgeMode(uint32_t frequency_Hz)
     LPC_PWM1->TCR |= 1;                 //enable counter mode
     LPC_PWM1->TCR |= (1 << 2);          //PWM enable
 
-    //LPC_PWM1->MCR |= (1 << 1) | (1 << 4) | (1 << 7);// | (1 << 10) | (1 << 13) | (1 << 16) | (1 << 19);           //reset TC if it matches MR0;
-
-
     LPC_PWM1->MCR |= (1 << 1);
 
-
     setFrequency(frequency_Hz);
-    //setDutyCycle(0, 0);
-    //setDutyCycle(1, 100);
-    //setDutyCycle(2, 0);
-    //setDutyCycle(3, 0);
-    //setDutyCycle(4, 0);
-    //setDutyCycle(5, 0);     //initialize duty cycles to 0
-
-    //LPC_PWM1->CTCR = ~(1 << 0) & (1 << 1);
 
     LPC_PWM1->LER |= (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4);    //put new value into MR1 for next cycle
     
@@ -121,24 +109,12 @@ void PWMDriver::setDutyCycle(uint8_t pwm_pin_arg, float duty_cycle_percentage)
     switch(pwm_pin_arg)
     {
         case 0:
-            //LPC_PWM1->MCR |= (1 << 1);
-            //LPC_PWM1->MCR &= ~(1 << 4);
-            //LPC_PWM1->MCR &= ~(1 << 7);
-            //LPC_PWM1->LER |= (1 << 0);
             LPC_PWM1->MR1 = duty_cycle_percentage;   // convert 0-4095 to 0-100
             break;
         case 1:
-            //LPC_PWM1->MCR &= ~(1 << 1);
-            //LPC_PWM1->MCR |= (1 << 1);
-            //LPC_PWM1->MCR &= ~(1 << 7);
-            //LPC_PWM1->LER |= (1 << 1);
             LPC_PWM1->MR2 = duty_cycle_percentage;
             break;
         case 2:
-            //LPC_PWM1->MCR &= ~(1 << 1);
-            //LPC_PWM1->MCR &= ~(1 << 4);
-            //LPC_PWM1->MCR |= (1 << 7);
-            //LPC_PWM1->LER |= (1 << 2);
             LPC_PWM1->MR3 = duty_cycle_percentage;
             break;
         case 3:
