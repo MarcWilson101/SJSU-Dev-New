@@ -9,9 +9,9 @@ class PWMDriver
 public:
     enum PWM_PIN
     {
-        PWM_PIN_2_0,    // PWM1.1
-        PWM_PIN_2_1,    // PWM1.2
-        PWM_PIN_2_2,    // PWM1.3
+        PWM_PIN_2_0 = 0,    // PWM1.1
+        PWM_PIN_2_1 = 1,    // PWM1.2
+        PWM_PIN_2_2 = 2,    // PWM1.3
         PWM_PIN_2_3,    // PWM1.4
         PWM_PIN_2_4,    // PWM1.5
         PWM_PIN_2_5,    // PWM1.6
@@ -32,7 +32,7 @@ public:
     *
     * @param pwm_pin_arg is the PWM_PIN enumeration of the desired pin.
     */
-    void pwmSelectPin(PWM_PIN pwm_pin_arg);
+    void pwmSelectPin(uint8_t pwm_pin_arg);
   
     /**
     * 1) Power up the PWM peripheral

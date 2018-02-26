@@ -41,17 +41,48 @@ inline bool CHECK_BIT(int var, int pos)
 {
     return (bool)(var & (1 << pos));
 }
+/*
 
-void vTaskRLED(void * pvParameters)
+
+*/
+void vTaskLED(void * pvParameters)
 {
-     float brightness;
-     PWMDriver PWM1;
-     PWM1.pwmSelectPin(PWMDriver::PWM_PIN_2_0);
-     PWM1.pwmInitSingleEdgeMode(100);
-     while(1)
+    ADCDriver * adcDriver = static_cast<ADCDriver *>(pvParameters);
+    float rawData;
+    float rBrightness, gBrightness, bBrightness;
+    PWMDriver PWMr, PWMg, PWMb;
+
+    PWMr.pwmSelectPin(0);
+    PWMr.pwmInitSingleEdgeMode(100);
+
+    PWMg.pwmSelectPin(1);
+    PWMg.pwmInitSingleEdgeMode(100);
+
+    PWMb.pwmSelectPin(2);
+    PWMb.pwmInitSingleEdgeMode(100);
+
+
+
+
+    while(1)
     {
-        brightness = frontSeat.readADCRawByChannel(3);
-        PWM1.setDutyCycle(0, brightness);
+    //vTaskDelay(100);
+    rawData = (adcDriver->readADCRawByChannel(3))/41;
+
+    rBrightness = rawData;
+    bBrightness = 100 - rawData;
+    if(rawData <= 50)
+    {
+        gBrightness = 100 - (2 * rBrightness);
+    }
+    else if(rawData > 50)
+    {
+        gBrightness = 100 - (2 * bBrightness);
+    }
+
+    PWMr.setDutyCycle(0, rBrightness);
+    PWMg.setDutyCycle(1, gBrightness);
+    PWMb.setDutyCycle(2, bBrightness);
     }
 
 }
@@ -59,12 +90,13 @@ void vTaskRLED(void * pvParameters)
 
 int main(void)
 {
-    ADCDriver frontSeat;
-    frontSeat.adcInitBurstMode(3);
-    frontSeat.adcSelectPin(3);
+    ADCDriver * frontSeat;
+    frontSeat->adcInitBurstMode(3);
+    frontSeat->adcSelectPin(3);
 
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
-	xTaskCreate(vTaskRLED, "vTaskRLED", 512, ( void * ) frontSeat, 1, NULL );
+	xTaskCreate(vTaskLED, "vTaskLED", 512, ( void * ) frontSeat, 1, NULL );
+    
     //xTaskCreate(vTaskPrint, "vTaskPrint", 512, ( void * ) 'A', 1, NULL );
     // Alias to vSchedulerStart();
     scheduler_start();
