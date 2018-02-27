@@ -61,13 +61,16 @@ void vTaskLED(void * pvParameters)
 
     uint8_t mode = 1;
     int count = 0;
+    float voltage = 0;
     while(1)
     {   
         vTaskDelay(1);
         count++;
         if(count == 1000)
         {
-            printf("rBrightness: %f, gBrightness: %f, bBrightness: %f\n", rBrightness, gBrightness, bBrightness);
+            voltage = rawData/29.57;
+            printf("ADC voltage: %f\n", voltage);
+            printf("Red Duty Cycle: %f,\n Green Duty Cycle: %f,\n Blue Duty Cycle: %f\n", (100 - rBrightness), (100 - gBrightness), (100 - bBrightness));
             count = 0;
         }
         //vTaskDelay(1000);

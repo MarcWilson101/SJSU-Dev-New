@@ -118,16 +118,16 @@ void PWMDriver::setDutyCycle(uint8_t pwm_pin_arg, float duty_cycle_percentage)
             LPC_PWM1->MR3 = duty_cycle_percentage;
             break;
         case 3:
-            LPC_PWM1->MR4 = (100 - duty_cycle_percentage/41);
+            LPC_PWM1->MR4 = duty_cycle_percentage;
             break;
         case 4:
-            LPC_PWM1->MR5 = (100 - duty_cycle_percentage/41);
+            LPC_PWM1->MR5 = duty_cycle_percentage;
             break;
         case 5:
-            LPC_PWM1->MR6 = (100 - duty_cycle_percentage/41);
+            LPC_PWM1->MR6 = duty_cycle_percentage;
             break;
         default:
-            LPC_PWM1->MR1 = (100 - duty_cycle_percentage/41);
+            LPC_PWM1->MR1 = duty_cycle_percentage;
             break;
     }
 }

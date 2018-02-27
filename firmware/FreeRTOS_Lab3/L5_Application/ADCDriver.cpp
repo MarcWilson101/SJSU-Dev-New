@@ -83,21 +83,21 @@ uint16_t ADCDriver::readADCRawByPin(uint8_t adc_pin_arg)//not done
 
     if(adc_pin_arg == 3)
     {
-        
+        rawData = (LPC_ADC->ADDR3 >> 4) & 0xFFF;
     }
     else if(adc_pin_arg == 4)
     {
-        
+        rawData = (LPC_ADC->ADDR4 >> 4) & 0xFFF;
     }
     else if(adc_pin_arg == 5)
     {
-        
+        rawData = (LPC_ADC->ADDR5 >> 4) & 0xFFF;
     }
     else
     {
         //wong pin
     }
-    return rawData;
+    return rawData;   
 }
 
 /**
@@ -135,9 +135,8 @@ uint16_t ADCDriver::readADCRawByChannel(uint8_t adc_channel_arg)
 */
 float ADCDriver::readADCVoltageByPin(uint8_t adc_pin_arg)
 {
-    float voltage = 0;
-
-
+    float voltage = readADCRawByPin(adc_pin_arg);
+    voltage = voltage/29.57;
     return voltage;
 }
 
@@ -148,9 +147,7 @@ float ADCDriver::readADCVoltageByPin(uint8_t adc_pin_arg)
 */
 float ADCDriver::readADCVoltageByChannel(uint8_t adc_channel_arg)
 {
-    float voltage = 0;
-
-
-
+    float voltage = readADCRawByChannel(adc_channel_arg);
+    voltage = voltage/29.57;
     return voltage;
 }
