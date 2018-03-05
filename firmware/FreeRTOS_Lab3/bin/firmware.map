@@ -5025,9 +5025,10 @@ END GROUP
  .rodata._ZL19LED_DISPLAY_CHARMAP
                 0x00000000000279e4       0x80 obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/src/io_source.o
  .rodata._Z8vTaskLEDPv.str1.1
-                0x0000000000027a64       0x63 obj/L5_Application/main.o
+                0x0000000000027a64       0x62 obj/L5_Application/main.o
  .rodata.main.str1.1
-                0x0000000000027ac7        0x9 obj/L5_Application/main.o
+                0x0000000000027ac6        0x9 obj/L5_Application/main.o
+ *fill*         0x0000000000027acf        0x1 ff
  .rodata._ZTIN10__cxxabiv117__class_type_infoE
                 0x0000000000027ad0        0xc /home/marc/SJSU-Dev-New/tools/gcc-arm-none-eabi-6-2017-q2-update/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/libstdc++_nano.a(class_type_info.o)
                 0x0000000000027ad0                typeinfo for __cxxabiv1::__class_type_info
