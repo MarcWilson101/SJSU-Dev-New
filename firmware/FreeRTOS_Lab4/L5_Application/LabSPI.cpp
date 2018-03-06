@@ -1,4 +1,8 @@
     #include "LabSPI.hpp"
+    #include <stdio.h>
+    #include "tasks.hpp"
+    #include "utilities.h"
+    #include "io.hpp"
 
 
     LabSPI::LabSPI(){}
@@ -20,24 +24,35 @@
         if(divide & 1 || divide == 0)
         {
             err = true;
+            return err;
         }
-
-        if(peripheral != 1 || format != 1)
+        if(peripheral == 0)
         {
-            err = true;
+            LPC_SC->PCONP |= (1 << 23); //ssp0
+            LPC_SC->PCLKSEL1 &= ~(3 << 10);         //set pclk = pclk
+            LPC_SC->PCLKSEL1 |= (1 << 10);
+            LPC_PINCON->PINSEL0 |= (2 << 30);               //select pck0
+            LPC_PINCON->PINSEL1 |= (2 << 2) | (2 << 4);      //select MOSI0 MISO0
         }
-        else if(peripheral == 1 && format == 1)
+        else //peripheral == 1
         {
-            LPC_SC->PCONP |= (1 << 10);
-            
+            LPC_SC->PCONP |= (1 << 10); //ssp1
             LPC_SC->PCLKSEL0 &= ~(3 << 20);         //set pclk = pclk
             LPC_SC->PCLKSEL0 |= (1 << 20);
+            LPC_PINCON->PINSEL0 |= (2 << 14) | (2 << 16) | (2 << 18);      //select MOSI1 MISO1 PCK1
 
-            LPC_PINCON->PINSEL0 |= (2 << 14) | (2 << 16) | (2 << 18);      //select MOSI MISO PCK
+        }
 
-            LPC_SSP1->CR0 = data_size_select;           //sit transfer size data width (7)
+        if(format == 1)
+        {            
+            LPC_SSP1->CR0 = data_size_select;           //set transfer size data width (7)
             LPC_SSP1->CR1 = (1 << 1);                   //set SSP as master
             LPC_SSP1->CPSR = divide;                    //divide master clock (8)
+        }
+        else
+        {
+            err = true;
+            return err;
         }
         return err;
     }
@@ -48,11 +63,21 @@
      *
      * @return received byte from external device via SSP data register.
      */
+
+    static SemaphoreHandle_t spi_bus_lock = xSemaphoreCreateMutex();
+
     uint8_t LabSPI::transfer(uint8_t send)
     {
-        LPC_SSP1->DR = send;
-        while (LPC_SSP1->SR & (1 << 4)){}       //wait until done
-        return LPC_SSP1->DR;
+        if(xSemaphoreTake(spi_bus_lock, 100))
+        {
+            //printf("Semaphore created...");
+            LPC_SSP1->DR = send;
+            while (LPC_SSP1->SR & (1 << 4)){}       //wait until done
+            xSemaphoreGive(spi_bus_lock);
+            //printf("Semaphore given up...");
+            return LPC_SSP1->DR;
+        }
+        
     }
     
     //set gpio 0.6 low to select flash

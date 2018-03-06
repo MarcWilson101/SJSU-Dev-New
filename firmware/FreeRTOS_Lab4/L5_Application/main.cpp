@@ -47,7 +47,7 @@ typedef union
     uint8_t byte;
     struct
     {
-        uint8_t rdy1:       1;
+        uint8_t rdy2:       1;
         uint8_t :           1;
         uint8_t epe:        1;
         uint8_t :           1;
@@ -87,9 +87,8 @@ int main(void)
 {    
     LabSPI mySPI;
 
-    char manID;
-    char devID[2];
-    char statusReg[2];
+    uint8_t manID;
+    uint8_t devID[2];
 
     statReg1 myStatReg1;
     statReg2 myStatReg2;
@@ -97,34 +96,104 @@ int main(void)
     mySPI.init(1, 7, 1, 8);
     
     mySPI.selectChip();
-    //LPC_GPIO1->FIOPIN &= ~(1 << 29);    //chip select logic analyzer
     mySPI.transfer(0x9F);               //send request for device info
     manID = mySPI.transfer(0);          //read manufacture id
     devID[0] = mySPI.transfer(0);       //read byte 1 of device id
     devID[1] = mySPI.transfer(0);       //read byte 2 of device id
-    //LPC_GPIO1->FIOPIN |= (1 << 29);     //deselect logic analyzer
     mySPI.deselectChip();
 
-    printf("Manufacture ID: %u\n", manID);
-    printf("Device ID byte 1: %u byte 2: %u\n", devID[0], devID[1]);
+    printf("Manufacture ID: %x\n", manID);
+    printf("Device ID: %x%x\n", devID[0], devID[1]);
     
-    mySPI.selectChip();
-    mySPI.transfer(0xD7);
-    myStatReg1.byte = mySPI.transfer(0);
-    myStatReg2.byte = mySPI.transfer(0);
+    mySPI.selectChip();                     
+    mySPI.transfer(0xD7);                   //request status register
+    myStatReg1.byte = mySPI.transfer(0);    //recieve status register byte 1
+    myStatReg2.byte = mySPI.transfer(0);    //recieve status register byte 1
     mySPI.deselectChip();
 
-    printf("Status register byte 1: %u, byte 2: %u", myStatReg1.byte, myStatReg2.byte);
+    //printf("Status register byte 1: %u, byte 2: %u\n", myStatReg1.byte, myStatReg2.byte);
 
     if(myStatReg1.rdy1)
     {
-        printf("rdy1");
+        printf("Ready/Busy Status = 1. Device is ready.\n");
     }
-    else if(!myStatReg1.rdy1)
+    else
     {
-        printf("!rdy1");
+        printf("Ready/Busy Status = 0. Device is busy with an internal operation.\n");
     }
-    
+    if(myStatReg1.comp)
+    {
+        printf("Compare result = 1. Main memory page data does not match buffer data.\n");
+    }
+    else
+    {
+        printf("Compare result = 0. Main memory page data matches buffer data.\n");
+    }
+    //density 5:2
+    if(myStatReg1.protect)
+    {
+        printf("Sector protection status = 1. It is enabled.\n");
+    }
+    else
+    {
+        printf("Sector protection status = 0. It is disabled.\n");
+    }
+    if(myStatReg1.page_size)
+    {
+        printf("Page size configuration = 1. Device is configured for standard DataFlash page size (528 bytes).\n");
+    }
+    else
+    {
+        printf("Page size configureation = 0. Device is configured for power of 2 binary page size (512 bytes).\n");
+    }
+    if(myStatReg2.rdy2)
+    {
+        printf("Ready/Busy Status = 1. Device is ready to use.\n");
+    }
+    else
+    {
+        printf("Ready/Busy Status = 0. Device is busy with an internal operation.\n");
+    }
+    if(myStatReg2.epe)
+    {
+        printf("Erase/Program Error = 1. Erase or program error detected.\n");
+    }
+    else
+    {
+        printf("Erase/Program Error = 0. Erase or program operation was successful.\n");
+    }
+    if(myStatReg2.sle)
+    {
+        printf("Sector Lockdown Enabled = 1.\n");
+    }
+    else
+    {
+        printf("Sector Lockdown disabled = 0.\n");
+    }
+    if(myStatReg2.ps2)
+    {
+        printf("Program suspend status buffer 2 = 1. A sector is program suspended while using Buffer 2.\n");
+    }
+    else
+    {
+        printf("Program suspend status buffer 2 = 0. No program is suspended while using Buffer 2.\n");
+    }
+    if(myStatReg2.ps1)
+    {
+        printf("Program suspend status buffer 1 = 1. A sector is program suspended while using Buffer 1.\n");
+    }
+    else
+    {
+        printf("Program suspend status 1 = 0. No program is suspended while using Buffer 1.\n");
+    }
+    if(myStatReg2.es)
+    {
+        printf("Erase suspend = 1. A sector is erase suspended.\n");
+    }
+    else
+    {
+        printf("Erase suspend = 0. No sectors are erase suspended.\n");
+    }
     
     //scheduler_add_task(new terminalTask(PRIORITY_HIGH));
 	//xTaskCreate(vTaskCode, "vTaskCode", 512, ( void * ) 'A', tskIDLE_PRIORITY, NULL );
