@@ -102,8 +102,8 @@ int main(void)
     devID[1] = mySPI.transfer(0);       //read byte 2 of device id
     mySPI.deselectChip();
 
-    printf("Manufacture ID: %x\n", manID);
-    printf("Device ID: %x%x\n", devID[0], devID[1]);
+    printf("\nManufacture ID:   %x\n", manID);
+    printf("Device ID:        %x%x\n", devID[0], devID[1]);
     
     mySPI.selectChip();                     
     mySPI.transfer(0xD7);                   //request status register
@@ -111,7 +111,7 @@ int main(void)
     myStatReg2.byte = mySPI.transfer(0);    //recieve status register byte 1
     mySPI.deselectChip();
 
-    //printf("Status register byte 1: %u, byte 2: %u\n", myStatReg1.byte, myStatReg2.byte);
+    printf("\n-------------------Status Register Info-------------------\n");
 
     if(myStatReg1.rdy1)
     {
@@ -123,7 +123,7 @@ int main(void)
     }
     if(myStatReg1.comp)
     {
-        printf("Compare result = 1. Main memory page data does not match buffer data.\n");
+        printf("Compare Result = 1. Main memory page data does not match buffer data.\n");
     }
     else
     {
