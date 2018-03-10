@@ -742,7 +742,7 @@
 000115dc W Uart3::~Uart3()
 00017608 T LabSPI::selectChip()
 00017618 T LabSPI::deselectChip()
-00017530 T LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)
+00017530 T LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)
 000175cc T LabSPI::transfer(unsigned char)
 0001752c T LabSPI::LabSPI()
 0001752c T LabSPI::LabSPI()

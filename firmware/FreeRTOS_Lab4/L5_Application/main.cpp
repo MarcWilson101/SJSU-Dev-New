@@ -59,30 +59,6 @@ typedef union
 }statReg2;
 
 
-
-inline bool CHECK_BIT(int var, int pos)
-{
-    return (bool)(var & (1 << pos));
-}
-
-void vTaskCode(void * pvParameters)
-{
-    char c = (char)((uint32_t)pvParameters);
-    while(1)
-    {
-        for(int i = 0; i < 16; i++)
-        {
-            for(int j = 1; j < 5; j++)
-            {
-                LE.set((5-j), CHECK_BIT(i,j-1));
-            }
-            LD.setNumber(i);
-            // printf("(%c) Hello World 0x%X\n", c, i);
-	    	vTaskDelay(1000);
-        }
-    }
-}
-
 int main(void)
 {    
     LabSPI mySPI;
@@ -93,7 +69,7 @@ int main(void)
     statReg1 myStatReg1;
     statReg2 myStatReg2;
 
-    mySPI.init(1, 7, 1, 8);
+    mySPI.init(LabSPI::SSP1, 7, 1, 8);
     
     mySPI.selectChip();
     mySPI.transfer(0x9F);               //send request for device info
@@ -195,10 +171,5 @@ int main(void)
         printf("Erase suspend = 0. No sectors are erase suspended.\n");
     }
     
-    //scheduler_add_task(new terminalTask(PRIORITY_HIGH));
-	//xTaskCreate(vTaskCode, "vTaskCode", 512, ( void * ) 'A', tskIDLE_PRIORITY, NULL );
-    // Alias to vSchedulerStart();
-    //scheduler_start();
-
     return -1;
 }

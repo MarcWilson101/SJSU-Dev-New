@@ -17,7 +17,7 @@
      *
      * @return true if initialization was successful
      */
-    bool LabSPI::init(uint8_t peripheral, uint8_t data_size_select, uint8_t format, uint8_t divide) //should be 1, 7, 8
+    bool LabSPI::init(Peripheral peripheral, uint8_t data_size_select, uint8_t format, uint8_t divide) //should be 1, 7, 8
     {
         bool err = false;  
         if(divide & 1 || divide == 0)

@@ -6,37 +6,37 @@ EXEC_P, HAS_SYMS, D_PAGED
 start address 0x00010195
 
 Program Header:
-0x70000001 off    0x00022ed0 vaddr 0x00022ed0 paddr 0x00022ed0 align 2**2
+0x70000001 off    0x00022ed4 vaddr 0x00022ed4 paddr 0x00022ed4 align 2**2
          filesz 0x00000008 memsz 0x00000008 flags r--
     LOAD off    0x00010000 vaddr 0x00010000 paddr 0x00010000 align 2**16
-         filesz 0x00012ed8 memsz 0x00012ed8 flags r-x
-    LOAD off    0x0002c000 vaddr 0x2007c000 paddr 0x00022ed8 align 2**16
+         filesz 0x00012edc memsz 0x00012edc flags r-x
+    LOAD off    0x0002c000 vaddr 0x2007c000 paddr 0x00022edc align 2**16
          filesz 0x000002fc memsz 0x000002fc flags rw-
-    LOAD off    0x0002c300 vaddr 0x2007c300 paddr 0x000231d4 align 2**16
+    LOAD off    0x0002c300 vaddr 0x2007c300 paddr 0x000231d8 align 2**16
          filesz 0x00000000 memsz 0x000004b8 flags rw-
 private flags = 5000200: [Version5 EABI] [soft-float ABI]
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn  Flags
-  0 .text         00012ecf  00010000  00010000  00010000  2**4  CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         000002fc  2007c000  00022ed8  0002c000  2**2  CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          000004b8  2007c300  000231d4  0002c300  2**3  ALLOC
-  3 .ARM.exidx    00000008  00022ed0  00022ed0  00022ed0  2**2  CONTENTS, ALLOC, LOAD, READONLY, DATA
-  4 .debug_info   00040946  00000000  00000000  0002c2fc  2**0  CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 0000b59f  00000000  00000000  0006cc42  2**0  CONTENTS, READONLY, DEBUGGING
-  6 .debug_aranges 00001718  00000000  00000000  000781e1  2**0  CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000106b2  00000000  00000000  000798f9  2**0  CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000b9d5  00000000  00000000  00089fab  2**0  CONTENTS, READONLY, DEBUGGING
-  9 .comment      0000007f  00000000  00000000  00095980  2**0  CONTENTS, READONLY
- 10 .ARM.attributes 00000031  00000000  00000000  000959ff  2**0  CONTENTS, READONLY
- 11 .debug_loc    00012d9b  00000000  00000000  00095a30  2**0  CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000025a0  00000000  00000000  000a87cb  2**0  CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  000060dc  00000000  00000000  000aad6c  2**2  CONTENTS, READONLY, DEBUGGING
+  0 .text         00012ed4  00010000  00010000  00010000  2**4  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000002fc  2007c000  00022edc  0002c000  2**2  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          000004b8  2007c300  000231d8  0002c300  2**3  ALLOC
+  3 .ARM.exidx    00000008  00022ed4  00022ed4  00022ed4  2**2  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  4 .debug_info   00040982  00000000  00000000  0002c2fc  2**0  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 0000b5c5  00000000  00000000  0006cc7e  2**0  CONTENTS, READONLY, DEBUGGING
+  6 .debug_aranges 00001718  00000000  00000000  00078243  2**0  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000106b2  00000000  00000000  0007995b  2**0  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000b9f9  00000000  00000000  0008a00d  2**0  CONTENTS, READONLY, DEBUGGING
+  9 .comment      0000007f  00000000  00000000  00095a06  2**0  CONTENTS, READONLY
+ 10 .ARM.attributes 00000031  00000000  00000000  00095a85  2**0  CONTENTS, READONLY
+ 11 .debug_loc    00012d9b  00000000  00000000  00095ab6  2**0  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000025a0  00000000  00000000  000a8851  2**0  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_frame  000060dc  00000000  00000000  000aadf4  2**2  CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 00010000 l    d  .text	00000000 .text
 2007c000 l    d  .data	00000000 .data
 2007c300 l    d  .bss	00000000 .bss
-00022ed0 l    d  .ARM.exidx	00000000 .ARM.exidx
+00022ed4 l    d  .ARM.exidx	00000000 .ARM.exidx
 00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
 00000000 l    d  .debug_aranges	00000000 .debug_aranges
@@ -462,7 +462,7 @@ SYMBOL TABLE:
 00018ed0 g     F .text	0000001c __locale_ctype_ptr
 00012a2c g     F .text	00000080 xQueueGenericSendFromISR
 0001d368 g     F .text	00000068 _Balloc
-00022ed8 g       .ARM.exidx	00000000 __exidx_end
+00022edc g       .ARM.exidx	00000000 __exidx_end
 00010e4c g     F .text	00000048 rtc_gettime
 000100d8 g       .text	00000000 __data_section_table_end
 00011420 g     F .text	00000030 eint3_enable_port0
@@ -490,7 +490,7 @@ SYMBOL TABLE:
 2007c7b4 g     O .bss	00000004 errno
 0001e7bc g     F .text	000001ec _scanf_i
 0001a992 g     F .text	00000004 __seofread
-00022ed8 g       .ARM.exidx	00000000 _etext
+00022edc g       .ARM.exidx	00000000 _etext
 0001457c g     F .text	0000003e nordic_set_intr_signals
 0001f1a4 g     F .text	00000010 .hidden __aeabi_cdcmple
 2007c334  w    O .bss	00000004 SingletonTemplate<Uart2>::mpSingletonInstance
@@ -553,7 +553,7 @@ SYMBOL TABLE:
 0001de9e g     F .text	0000003a __ssrefill_r
 00014704 g     F .text	000000c8 nordic_init
 0001a8d0 g     F .text	00000004 _getpid_r
-00022ecf g       .text	00000000 __symbol_table_end
+00022ed4 g       .text	00000000 __symbol_table_end
 00017192 g     F .text	00000010 disk_status
 00014964 g     F .text	0000004c wireless_init
 0001eb48 g     F .text	0000002c strtoul
@@ -590,7 +590,7 @@ SYMBOL TABLE:
 00010148  w    F .text	00000010 CANAct_IRQHandler
 000207f8 g     O .text	0000002c vtable for __cxxabiv1::__si_class_type_info
 0001d930 g     F .text	000000a4 __b2d
-00022ecf g       .text	00000000 __exidx_start
+00022ed4 g       .text	00000000 __exidx_start
 0001ece4 g     F .text	00000254 .hidden __aeabi_dmul
 000136b8 g     F .text	0000000c sys_get_boot_type
 00013068 g     F .text	00000024 _isatty
@@ -620,7 +620,6 @@ SYMBOL TABLE:
 00011d70  w    F .text	00000018 SingletonTemplate<IR_Sensor>::getInstance()
 00010e24 g     F .text	00000028 I2C2_IRQHandler
 0001268c g     F .text	00000016 vListInitialise
-00017530 g     F .text	0000009c LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)
 00012e30 g     F .text	00000034 syscalls_init
 000115dc  w    F .text	00000014 Uart3::~Uart3()
 000100cc g       .text	00000000 __data_section_table
@@ -790,7 +789,7 @@ SYMBOL TABLE:
 00010716 g     F .text	0000001c delay_us
 000145ba g     F .text	00000038 nordic_set_crc
 000107d4  w    F .text	00000014 UartDev::~UartDev()
-00020cdc g     O .text	000021f3 APP_SYM_TABLE
+00020cdc g     O .text	000021f8 APP_SYM_TABLE
 0001397c g     F .text	0000001a uart0_puts
 000110fc  w    F .text	00000014 Uart2::~Uart2()
 00010d6c g     F .text	00000020 CharDev::CharDev()
@@ -1034,6 +1033,7 @@ SYMBOL TABLE:
 0001ebe8 g     F .text	000000e4 _ungetc_r
 000175cc g     F .text	0000003c LabSPI::transfer(unsigned char)
 00017e44 g     F .text	0000002c std::type_info::operator==(std::type_info const&) const
+00017530 g     F .text	0000009c LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)
 00017996 g     F .text	00000018 __cxa_guard_acquire
 00010148  w    F .text	00000010 ENET_IRQHandler
 00010148  w    F .text	00000010 USBAct_IRQHandler
@@ -1077,7 +1077,7 @@ Disassembly of section .text:
 
 000100cc <__data_section_table>:
 __data_section_table():
-   100cc:	00022ed8 	.word	0x00022ed8
+   100cc:	00022edc 	.word	0x00022edc
    100d0:	2007c000 	.word	0x2007c000
    100d4:	000002fc 	.word	0x000002fc
 
@@ -26601,14 +26601,14 @@ _ZN6LabSPIC2Ev():
    1752e:	Address 0x000000000001752e is out of bounds.
 
 
-00017530 <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)>:
-_ZN6LabSPI4initEhhhh():
+00017530 <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)>:
+_ZN6LabSPI4initENS_10PeripheralEhhh():
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:21
      * @param divide is the how much to divide the clock for SSP; take care of error cases such as the value of 0, 1, and odd numbers
      *
      * @return true if initialization was successful
      */
-    bool LabSPI::init(uint8_t peripheral, uint8_t data_size_select, uint8_t format, uint8_t divide) //should be 1, 7, 8
+    bool LabSPI::init(Peripheral peripheral, uint8_t data_size_select, uint8_t format, uint8_t divide) //should be 1, 7, 8
     {
    17530:	b510      	push	{r4, lr}
    17532:	f89d 4008 	ldrb.w	r4, [sp, #8]
@@ -26616,7 +26616,7 @@ _ZN6LabSPI4initEhhhh():
         bool err = false;  
         if(divide & 1 || divide == 0)
    17536:	07e0      	lsls	r0, r4, #31
-   17538:	d501      	bpl.n	1753e <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0xe>
+   17538:	d501      	bpl.n	1753e <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0xe>
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:26
         {
             err = true;
@@ -26626,12 +26626,12 @@ _ZN6LabSPI4initEhhhh():
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:23 (discriminator 1)
         if(divide & 1 || divide == 0)
    1753e:	2c00      	cmp	r4, #0
-   17540:	d0fb      	beq.n	1753a <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0xa>
-   17542:	481f      	ldr	r0, [pc, #124]	; (175c0 <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0x90>)
+   17540:	d0fb      	beq.n	1753a <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0xa>
+   17542:	481f      	ldr	r0, [pc, #124]	; (175c0 <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0x90>)
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:28
         }
         if(peripheral == 0)
-   17544:	bb19      	cbnz	r1, 1758e <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0x5e>
+   17544:	bb19      	cbnz	r1, 1758e <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0x5e>
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:30
         {
             LPC_SC->PCONP |= (1 << 23); //ssp0
@@ -26650,7 +26650,7 @@ _ZN6LabSPI4initEhhhh():
    17566:	f8c0 11ac 	str.w	r1, [r0, #428]	; 0x1ac
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:33
             LPC_PINCON->PINSEL0 |= (2 << 30);               //select pck0
-   1756a:	4916      	ldr	r1, [pc, #88]	; (175c4 <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0x94>)
+   1756a:	4916      	ldr	r1, [pc, #88]	; (175c4 <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0x94>)
    1756c:	6808      	ldr	r0, [r1, #0]
    1756e:	f040 4000 	orr.w	r0, r0, #2147483648	; 0x80000000
    17572:	6008      	str	r0, [r1, #0]
@@ -26667,11 +26667,11 @@ _ZN6LabSPI4initEhhhh():
 
         if(format == 1)
    1757c:	2b01      	cmp	r3, #1
-   1757e:	d1dc      	bne.n	1753a <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0xa>
+   1757e:	d1dc      	bne.n	1753a <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0xa>
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:47
         {            
             LPC_SSP1->CR0 = data_size_select;           //set transfer size data width (7)
-   17580:	4b11      	ldr	r3, [pc, #68]	; (175c8 <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0x98>)
+   17580:	4b11      	ldr	r3, [pc, #68]	; (175c8 <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0x98>)
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:56
         else
         {
@@ -26710,11 +26710,11 @@ _ZN6LabSPI4initEhhhh():
    175ae:	f8c0 11a8 	str.w	r1, [r0, #424]	; 0x1a8
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/LabSPI.cpp:41
             LPC_PINCON->PINSEL0 |= (2 << 14) | (2 << 16) | (2 << 18);      //select MOSI1 MISO1 PCK1
-   175b2:	4804      	ldr	r0, [pc, #16]	; (175c4 <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0x94>)
+   175b2:	4804      	ldr	r0, [pc, #16]	; (175c4 <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0x94>)
    175b4:	6801      	ldr	r1, [r0, #0]
    175b6:	f441 2128 	orr.w	r1, r1, #688128	; 0xa8000
    175ba:	6001      	str	r1, [r0, #0]
-   175bc:	e7de      	b.n	1757c <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)+0x4c>
+   175bc:	e7de      	b.n	1757c <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)+0x4c>
    175be:	bf00      	nop
    175c0:	400fc000 	.word	0x400fc000
    175c4:	4002c000 	.word	0x4002c000
@@ -26851,14 +26851,14 @@ int main(void)
     statReg1 myStatReg1;
     statReg2 myStatReg2;
 
-    mySPI.init(1, 7, 1, 8);
+    mySPI.init(LabSPI::SSP1, 7, 1, 8);
    17648:	2308      	movs	r3, #8
    1764a:	9300      	str	r3, [sp, #0]
    1764c:	2301      	movs	r3, #1
    1764e:	2207      	movs	r2, #7
    17650:	4619      	mov	r1, r3
    17652:	a803      	add	r0, sp, #12
-   17654:	f7ff ff6c 	bl	17530 <LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)>
+   17654:	f7ff ff6c 	bl	17530 <LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)>
 /home/marc/SJSU-Dev-New/firmware/FreeRTOS_Lab4/L5_Application/main.cpp:98
     
     mySPI.selectChip();
@@ -41058,137 +41058,137 @@ __symbol_table_start():
    2264c:	0a292870 31303030 38313637 4c205420     p().00017618 T L
    2265c:	50536261 643a3a49 6c657365 43746365     abSPI::deselectC
    2266c:	28706968 30300a29 35373130 54203033     hip().00017530 T
-   2267c:	62614c20 3a495053 696e693a 6e752874      LabSPI::init(un
-   2268c:	6e676973 63206465 2c726168 736e7520     signed char, uns
-   2269c:	656e6769 68632064 202c7261 69736e75     igned char, unsi
-   226ac:	64656e67 61686320 75202c72 6769736e     gned char, unsig
-   226bc:	2064656e 72616863 30300a29 35373130     ned char).000175
-   226cc:	54206363 62614c20 3a495053 6172743a     cc T LabSPI::tra
-   226dc:	6566736e 6e752872 6e676973 63206465     nsfer(unsigned c
-   226ec:	29726168 3030300a 32353731 20542063     har).0001752c T 
-   226fc:	5362614c 3a3a4950 5362614c 29284950     LabSPI::LabSPI()
-   2270c:	3030300a 32353731 20542063 5362614c     .0001752c T LabS
-   2271c:	3a3a4950 5362614c 29284950 3030300a     PI::LabSPI().000
-   2272c:	32363731 20542038 5362614c 3a3a4950     17628 T LabSPI::
-   2273c:	62614c7e 28495053 30300a29 36373130     ~LabSPI().000176
-   2274c:	54203832 62614c20 3a495053 614c7e3a     28 T LabSPI::~La
-   2275c:	49505362 300a2928 30313030 20633664     bSPI().00010d6c 
-   2276c:	68432054 65447261 433a3a76 44726168     T CharDev::CharD
-   2277c:	29287665 3030300a 36643031 20542063     ev().00010d6c T 
-   2278c:	72616843 3a766544 6168433a 76654472     CharDev::CharDev
-   2279c:	300a2928 30313030 20633864 68432054     ().00010d8c T Ch
-   227ac:	65447261 7e3a3a76 72616843 28766544     arDev::~CharDev(
-   227bc:	30300a29 64303130 54206338 61684320     ).00010d8c T Cha
-   227cc:	76654472 437e3a3a 44726168 29287665     rDev::~CharDev()
-   227dc:	3030300a 65343731 20542038 726f7453     .000174e8 T Stor
-   227ec:	3a656761 6165723a 68632864 63207261     age::read(char c
-   227fc:	74736e6f 76202c2a 2a64696f 6e75202c     onst*, void*, un
-   2280c:	6e676973 69206465 202c746e 69736e75     signed int, unsi
-   2281c:	64656e67 746e6920 30300a29 38303130     gned int).000108
-   2282c:	54203437 72615520 76654474 61683a3a     74 T UartDev::ha
-   2283c:	656c646e 65746e49 70757272 0a292874     ndleInterrupt().
-   2284c:	31303030 38653730 55205420 44747261     000107e8 T UartD
-   2285c:	3a3a7665 73756c66 0a292868 31303030     ev::flush().0001
-   2286c:	38303830 55205420 44747261 3a3a7665     0808 T UartDev::
-   2287c:	43746567 28726168 72616863 75202c2a     getChar(char*, u
-   2288c:	6769736e 2064656e 29746e69 3030300a     nsigned int).000
-   2289c:	36373031 20542032 74726155 3a766544     10762 T UartDev:
-   228ac:	7475703a 72616843 61686328 75202c72     :putChar(char, u
-   228bc:	6769736e 2064656e 29746e69 3030300a     nsigned int).000
-   228cc:	33393031 20542034 74726155 3a766544     10934 T UartDev:
-   228dc:	7261553a 76654474 736e7528 656e6769     :UartDev(unsigne
-   228ec:	6e692064 0a292a74 31303030 34333930     d int*).00010934
-   228fc:	55205420 44747261 3a3a7665 74726155      T UartDev::Uart
-   2290c:	28766544 69736e75 64656e67 746e6920     Dev(unsigned int
-   2291c:	300a292a 30313030 20383961 32492054     *).00010a98 T I2
-   2292c:	61425f43 3a3a6573 64616572 69676552     C_Base::readRegi
-   2293c:	72657473 6e752873 6e676973 63206465     sters(unsigned c
-   2294c:	2c726168 736e7520 656e6769 68632064     har, unsigned ch
-   2295c:	202c7261 69736e75 64656e67 61686320     ar, unsigned cha
-   2296c:	202c2a72 69736e75 64656e67 6e6f6c20     r*, unsigned lon
-   2297c:	300a2967 30313030 20656461 32492054     g).00010ade T I2
-   2298c:	61425f43 3a3a6573 64616572 69676552     C_Base::readRegi
-   2299c:	72657473 6e752873 6e676973 63206465     sters(unsigned c
-   229ac:	2c726168 736e7520 656e6769 68632064     har, unsigned ch
-   229bc:	2c2a7261 736e7520 656e6769 6f6c2064     ar*, unsigned lo
-   229cc:	0a29676e 31303030 32626130 49205420     ng).00010ab2 T I
-   229dc:	425f4332 3a657361 6972773a 65526574     2C_Base::writeRe
-   229ec:	74736967 28737265 69736e75 64656e67     gisters(unsigned
-   229fc:	61686320 75202c72 6769736e 2064656e      char, unsigned 
-   22a0c:	72616863 75202c2a 6769736e 2064656e     char*, unsigned 
-   22a1c:	676e6f6c 30300a29 64303130 54203033     long).00010d30 T
-   22a2c:	43324920 7361425f 683a3a65 6c646e61      I2C_Base::handl
-   22a3c:	746e4965 75727265 29287470 3030300a     eInterrupt().000
-   22a4c:	66613031 20542036 5f433249 65736142     10af6 T I2C_Base
-   22a5c:	68633a3a 446b6365 63697665 73655265     ::checkDeviceRes
-   22a6c:	736e6f70 6e752865 6e676973 63206465     ponse(unsigned c
-   22a7c:	29726168 3030300a 36613031 20542034     har).00010a64 T 
-   22a8c:	5f433249 65736142 72773a3a 52657469     I2C_Base::writeR
-   22a9c:	73696765 54726574 526e6568 28646165     egisterThenRead(
-   22aac:	69736e75 64656e67 61686320 75202c72     unsigned char, u
-   22abc:	6769736e 2064656e 72616863 75202c2a     nsigned char*, u
-   22acc:	6769736e 2064656e 676e6f6c 6e75202c     nsigned long, un
-   22adc:	6e676973 63206465 2a726168 6e75202c     signed char*, un
-   22aec:	6e676973 6c206465 29676e6f 3030300a     signed long).000
-   22afc:	36623031 20542038 5f433249 65736142     10b68 T I2C_Base
-   22b0c:	6e693a3a 75287469 6769736e 2064656e     ::init(unsigned 
-   22b1c:	676e6f6c 6e75202c 6e676973 6c206465     long, unsigned l
-   22b2c:	29676e6f 3030300a 37613031 20542030     ong).00010a70 T 
-   22b3c:	5f433249 65736142 65723a3a 65526461     I2C_Base::readRe
-   22b4c:	6e752867 6e676973 63206465 2c726168     g(unsigned char,
-   22b5c:	736e7520 656e6769 68632064 0a297261      unsigned char).
-   22b6c:	31303030 63353930 49205420 425f4332     0001095c T I2C_B
-   22b7c:	3a657361 6172743a 6566736e 6e752872     ase::transfer(un
-   22b8c:	6e676973 63206465 2c726168 736e7520     signed char, uns
-   22b9c:	656e6769 68632064 2c2a7261 736e7520     igned char*, uns
-   22bac:	656e6769 6f6c2064 202c676e 69736e75     igned long, unsi
-   22bbc:	64656e67 61686320 202c2a72 69736e75     gned char*, unsi
-   22bcc:	64656e67 6e6f6c20 300a2967 30313030     gned long).00010
-   22bdc:	20366361 32492054 61425f43 3a3a6573     ac6 T I2C_Base::
-   22bec:	74697277 67655265 736e7528 656e6769     writeReg(unsigne
-   22bfc:	68632064 202c7261 69736e75 64656e67     d char, unsigned
-   22c0c:	61686320 75202c72 6769736e 2064656e      char, unsigned 
-   22c1c:	72616863 30300a29 62303130 54206330     char).00010b0c T
-   22c2c:	43324920 7361425f 493a3a65 425f4332      I2C_Base::I2C_B
-   22c3c:	28657361 5f43504c 5f433249 65707954     ase(LPC_I2C_Type
-   22c4c:	2a666544 30300a29 62303130 54206330     Def*).00010b0c T
-   22c5c:	43324920 7361425f 493a3a65 425f4332      I2C_Base::I2C_B
-   22c6c:	28657361 5f43504c 5f433249 65707954     ase(LPC_I2C_Type
-   22c7c:	2a666544 30300a29 34373130 54203239     Def*).00017492 T
-   22c8c:	43324920 6d65545f 673a3a70 65437465      I2C_Temp::getCe
-   22c9c:	7569736c 0a292873 31303030 34633437     lsius().000174c4
-   22cac:	49205420 545f4332 3a706d65 7465673a      T I2C_Temp::get
-   22cbc:	65726146 6965686e 0a292874 31303030     Farenheit().0001
-   22ccc:	30373437 49205420 545f4332 3a706d65     7470 T I2C_Temp:
-   22cdc:	696e693a 0a292874 31303030 38353437     :init().00017458
-   22cec:	53205420 63746977 3a736568 7465673a      T Switches::get
-   22cfc:	74697753 61566863 7365756c 300a2928     SwitchValues().0
-   22d0c:	37313030 20323534 77532054 68637469     0017452 T Switch
-   22d1c:	3a3a7365 74696e69 300a2928 37313030     es::init().00017
-   22d2c:	20633932 52492054 6e65535f 3a726f73     29c T IR_Sensor:
-   22d3c:	6f74733a 72496572 65646f43 736e7528     :storeIrCode(uns
-   22d4c:	656e6769 6f6c2064 0a29676e 31303030     igned long).0001
-   22d5c:	38623237 49205420 65535f52 726f736e     72b8 T IR_Sensor
-   22d6c:	65643a3a 65646f63 6f437249 29286564     ::decodeIrCode()
-   22d7c:	3030300a 31333731 20542063 535f5249     .0001731c T IR_S
-   22d8c:	6f736e65 693a3a72 2874696e 30300a29     ensor::init().00
-   22d9c:	65373130 54203034 64747320 79743a3a     017e40 T std::ty
-   22dac:	695f6570 3a6f666e 695f5f3a 6f705f73     pe_info::__is_po
-   22dbc:	65746e69 28705f72 6f632029 0a74736e     inter_p() const.
-   22dcc:	31303030 30346537 73205420 3a3a6474     00017e40 T std::
-   22ddc:	65707974 666e695f 5f3a3a6f 5f73695f     type_info::__is_
-   22dec:	636e7566 6e6f6974 2928705f 6e6f6320     function_p() con
-   22dfc:	300a7473 37313030 20343465 74732054     st.00017e44 T st
-   22e0c:	743a3a64 5f657079 6f666e69 706f3a3a     d::type_info::op
-   22e1c:	74617265 3d3d726f 64747328 79743a3a     erator==(std::ty
-   22e2c:	695f6570 206f666e 736e6f63 20292674     pe_info const&) 
-   22e3c:	736e6f63 30300a74 65373130 54206533     const.00017e3e T
-   22e4c:	64747320 79743a3a 695f6570 3a6f666e      std::type_info:
-   22e5c:	79747e3a 695f6570 286f666e 30300a29     :~type_info().00
-   22e6c:	65373130 54206533 64747320 79743a3a     017e3e T std::ty
-   22e7c:	695f6570 3a6f666e 79747e3a 695f6570     pe_info::~type_i
-   22e8c:	286f666e 30300a29 65373130 54203837     nfo().00017e78 T
-   22e9c:	64747320 65673a3a 65745f74 6e696d72      std::get_termin
-   22eac:	28657461 30300a29 65373130 54203838     ate().00017e88 T
-   22ebc:	64747320 65743a3a 6e696d72 28657461      std::terminate(
-   22ecc:	00000a29                                         )..
+   2267c:	62614c20 3a495053 696e693a 614c2874      LabSPI::init(La
+   2268c:	49505362 65503a3a 68706972 6c617265     bSPI::Peripheral
+   2269c:	6e75202c 6e676973 63206465 2c726168     , unsigned char,
+   226ac:	736e7520 656e6769 68632064 202c7261      unsigned char, 
+   226bc:	69736e75 64656e67 61686320 300a2972     unsigned char).0
+   226cc:	37313030 20636335 614c2054 49505362     00175cc T LabSPI
+   226dc:	72743a3a 66736e61 75287265 6769736e     ::transfer(unsig
+   226ec:	2064656e 72616863 30300a29 35373130     ned char).000175
+   226fc:	54206332 62614c20 3a495053 62614c3a     2c T LabSPI::Lab
+   2270c:	28495053 30300a29 35373130 54206332     SPI().0001752c T
+   2271c:	62614c20 3a495053 62614c3a 28495053      LabSPI::LabSPI(
+   2272c:	30300a29 36373130 54203832 62614c20     ).00017628 T Lab
+   2273c:	3a495053 614c7e3a 49505362 300a2928     SPI::~LabSPI().0
+   2274c:	37313030 20383236 614c2054 49505362     0017628 T LabSPI
+   2275c:	4c7e3a3a 50536261 0a292849 31303030     ::~LabSPI().0001
+   2276c:	63366430 43205420 44726168 3a3a7665     0d6c T CharDev::
+   2277c:	72616843 28766544 30300a29 64303130     CharDev().00010d
+   2278c:	54206336 61684320 76654472 68433a3a     6c T CharDev::Ch
+   2279c:	65447261 0a292876 31303030 63386430     arDev().00010d8c
+   227ac:	43205420 44726168 3a3a7665 6168437e      T CharDev::~Cha
+   227bc:	76654472 300a2928 30313030 20633864     rDev().00010d8c 
+   227cc:	68432054 65447261 7e3a3a76 72616843     T CharDev::~Char
+   227dc:	28766544 30300a29 34373130 54203865     Dev().000174e8 T
+   227ec:	6f745320 65676172 65723a3a 63286461      Storage::read(c
+   227fc:	20726168 736e6f63 202c2a74 64696f76     har const*, void
+   2280c:	75202c2a 6769736e 2064656e 2c746e69     *, unsigned int,
+   2281c:	736e7520 656e6769 6e692064 300a2974      unsigned int).0
+   2282c:	30313030 20343738 61552054 65447472     0010874 T UartDe
+   2283c:	683a3a76 6c646e61 746e4965 75727265     v::handleInterru
+   2284c:	29287470 3030300a 65373031 20542038     pt().000107e8 T 
+   2285c:	74726155 3a766544 756c663a 29286873     UartDev::flush()
+   2286c:	3030300a 30383031 20542038 74726155     .00010808 T Uart
+   2287c:	3a766544 7465673a 72616843 61686328     Dev::getChar(cha
+   2288c:	202c2a72 69736e75 64656e67 746e6920     r*, unsigned int
+   2289c:	30300a29 37303130 54203236 72615520     ).00010762 T Uar
+   228ac:	76654474 75703a3a 61684374 68632872     tDev::putChar(ch
+   228bc:	202c7261 69736e75 64656e67 746e6920     ar, unsigned int
+   228cc:	30300a29 39303130 54203433 72615520     ).00010934 T Uar
+   228dc:	76654474 61553a3a 65447472 6e752876     tDev::UartDev(un
+   228ec:	6e676973 69206465 292a746e 3030300a     signed int*).000
+   228fc:	33393031 20542034 74726155 3a766544     10934 T UartDev:
+   2290c:	7261553a 76654474 736e7528 656e6769     :UartDev(unsigne
+   2291c:	6e692064 0a292a74 31303030 38396130     d int*).00010a98
+   2292c:	49205420 425f4332 3a657361 6165723a      T I2C_Base::rea
+   2293c:	67655264 65747369 75287372 6769736e     dRegisters(unsig
+   2294c:	2064656e 72616863 6e75202c 6e676973     ned char, unsign
+   2295c:	63206465 2c726168 736e7520 656e6769     ed char, unsigne
+   2296c:	68632064 2c2a7261 736e7520 656e6769     d char*, unsigne
+   2297c:	6f6c2064 0a29676e 31303030 65646130     d long).00010ade
+   2298c:	49205420 425f4332 3a657361 6165723a      T I2C_Base::rea
+   2299c:	67655264 65747369 75287372 6769736e     dRegisters(unsig
+   229ac:	2064656e 72616863 6e75202c 6e676973     ned char, unsign
+   229bc:	63206465 2a726168 6e75202c 6e676973     ed char*, unsign
+   229cc:	6c206465 29676e6f 3030300a 62613031     ed long).00010ab
+   229dc:	20542032 5f433249 65736142 72773a3a     2 T I2C_Base::wr
+   229ec:	52657469 73696765 73726574 736e7528     iteRegisters(uns
+   229fc:	656e6769 68632064 202c7261 69736e75     igned char, unsi
+   22a0c:	64656e67 61686320 202c2a72 69736e75     gned char*, unsi
+   22a1c:	64656e67 6e6f6c20 300a2967 30313030     gned long).00010
+   22a2c:	20303364 32492054 61425f43 3a3a6573     d30 T I2C_Base::
+   22a3c:	646e6168 6e49656c 72726574 28747075     handleInterrupt(
+   22a4c:	30300a29 61303130 54203666 43324920     ).00010af6 T I2C
+   22a5c:	7361425f 633a3a65 6b636568 69766544     _Base::checkDevi
+   22a6c:	65526563 6e6f7073 75286573 6769736e     ceResponse(unsig
+   22a7c:	2064656e 72616863 30300a29 61303130     ned char).00010a
+   22a8c:	54203436 43324920 7361425f 773a3a65     64 T I2C_Base::w
+   22a9c:	65746972 69676552 72657473 6e656854     riteRegisterThen
+   22aac:	64616552 736e7528 656e6769 68632064     Read(unsigned ch
+   22abc:	202c7261 69736e75 64656e67 61686320     ar, unsigned cha
+   22acc:	202c2a72 69736e75 64656e67 6e6f6c20     r*, unsigned lon
+   22adc:	75202c67 6769736e 2064656e 72616863     g, unsigned char
+   22aec:	75202c2a 6769736e 2064656e 676e6f6c     *, unsigned long
+   22afc:	30300a29 62303130 54203836 43324920     ).00010b68 T I2C
+   22b0c:	7361425f 693a3a65 2874696e 69736e75     _Base::init(unsi
+   22b1c:	64656e67 6e6f6c20 75202c67 6769736e     gned long, unsig
+   22b2c:	2064656e 676e6f6c 30300a29 61303130     ned long).00010a
+   22b3c:	54203037 43324920 7361425f 723a3a65     70 T I2C_Base::r
+   22b4c:	52646165 75286765 6769736e 2064656e     eadReg(unsigned 
+   22b5c:	72616863 6e75202c 6e676973 63206465     char, unsigned c
+   22b6c:	29726168 3030300a 35393031 20542063     har).0001095c T 
+   22b7c:	5f433249 65736142 72743a3a 66736e61     I2C_Base::transf
+   22b8c:	75287265 6769736e 2064656e 72616863     er(unsigned char
+   22b9c:	6e75202c 6e676973 63206465 2a726168     , unsigned char*
+   22bac:	6e75202c 6e676973 6c206465 2c676e6f     , unsigned long,
+   22bbc:	736e7520 656e6769 68632064 2c2a7261      unsigned char*,
+   22bcc:	736e7520 656e6769 6f6c2064 0a29676e      unsigned long).
+   22bdc:	31303030 36636130 49205420 425f4332     00010ac6 T I2C_B
+   22bec:	3a657361 6972773a 65526574 6e752867     ase::writeReg(un
+   22bfc:	6e676973 63206465 2c726168 736e7520     signed char, uns
+   22c0c:	656e6769 68632064 202c7261 69736e75     igned char, unsi
+   22c1c:	64656e67 61686320 300a2972 30313030     gned char).00010
+   22c2c:	20633062 32492054 61425f43 3a3a6573     b0c T I2C_Base::
+   22c3c:	5f433249 65736142 43504c28 4332495f     I2C_Base(LPC_I2C
+   22c4c:	7079545f 66654465 300a292a 30313030     _TypeDef*).00010
+   22c5c:	20633062 32492054 61425f43 3a3a6573     b0c T I2C_Base::
+   22c6c:	5f433249 65736142 43504c28 4332495f     I2C_Base(LPC_I2C
+   22c7c:	7079545f 66654465 300a292a 37313030     _TypeDef*).00017
+   22c8c:	20323934 32492054 65545f43 3a3a706d     492 T I2C_Temp::
+   22c9c:	43746567 69736c65 29287375 3030300a     getCelsius().000
+   22cac:	63343731 20542034 5f433249 706d6554     174c4 T I2C_Temp
+   22cbc:	65673a3a 72614674 65686e65 29287469     ::getFarenheit()
+   22ccc:	3030300a 37343731 20542030 5f433249     .00017470 T I2C_
+   22cdc:	706d6554 6e693a3a 29287469 3030300a     Temp::init().000
+   22cec:	35343731 20542038 74697753 73656863     17458 T Switches
+   22cfc:	65673a3a 69775374 56686374 65756c61     ::getSwitchValue
+   22d0c:	0a292873 31303030 32353437 53205420     s().00017452 T S
+   22d1c:	63746977 3a736568 696e693a 0a292874     witches::init().
+   22d2c:	31303030 63393237 49205420 65535f52     0001729c T IR_Se
+   22d3c:	726f736e 74733a3a 4965726f 646f4372     nsor::storeIrCod
+   22d4c:	6e752865 6e676973 6c206465 29676e6f     e(unsigned long)
+   22d5c:	3030300a 62323731 20542038 535f5249     .000172b8 T IR_S
+   22d6c:	6f736e65 643a3a72 646f6365 43724965     ensor::decodeIrC
+   22d7c:	2865646f 30300a29 33373130 54206331     ode().0001731c T
+   22d8c:	5f524920 736e6553 3a3a726f 74696e69      IR_Sensor::init
+   22d9c:	300a2928 37313030 20303465 74732054     ().00017e40 T st
+   22dac:	743a3a64 5f657079 6f666e69 5f5f3a3a     d::type_info::__
+   22dbc:	705f7369 746e696f 705f7265 63202928     is_pointer_p() c
+   22dcc:	74736e6f 3030300a 34653731 20542030     onst.00017e40 T 
+   22ddc:	3a647473 7079743a 6e695f65 3a3a6f66     std::type_info::
+   22dec:	73695f5f 6e75665f 6f697463 28705f6e     __is_function_p(
+   22dfc:	6f632029 0a74736e 31303030 34346537     ) const.00017e44
+   22e0c:	73205420 3a3a6474 65707974 666e695f      T std::type_inf
+   22e1c:	6f3a3a6f 61726570 3d726f74 7473283d     o::operator==(st
+   22e2c:	743a3a64 5f657079 6f666e69 6e6f6320     d::type_info con
+   22e3c:	29267473 6e6f6320 300a7473 37313030     st&) const.00017
+   22e4c:	20653365 74732054 743a3a64 5f657079     e3e T std::type_
+   22e5c:	6f666e69 747e3a3a 5f657079 6f666e69     info::~type_info
+   22e6c:	300a2928 37313030 20653365 74732054     ().00017e3e T st
+   22e7c:	743a3a64 5f657079 6f666e69 747e3a3a     d::type_info::~t
+   22e8c:	5f657079 6f666e69 300a2928 37313030     ype_info().00017
+   22e9c:	20383765 74732054 673a3a64 745f7465     e78 T std::get_t
+   22eac:	696d7265 6574616e 300a2928 37313030     erminate().00017
+   22ebc:	20383865 74732054 743a3a64 696d7265     e88 T std::termi
+   22ecc:	6574616e 000a2928                       nate()..

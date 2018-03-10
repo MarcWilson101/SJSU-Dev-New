@@ -35,7 +35,7 @@ public:
      *
      * @return true if initialization was successful
      */
-    bool init(uint8_t peripheral, uint8_t data_size_select, uint8_t format, uint8_t divide);
+    bool init(Peripheral peripheral, uint8_t data_size_select, uint8_t format, uint8_t divide);
 
     /**
      * Transfers a byte via SSP to an external device using the SSP data register.

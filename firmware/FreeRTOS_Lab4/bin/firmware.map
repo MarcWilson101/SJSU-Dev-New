@@ -3285,7 +3285,7 @@ LOAD /home/marc/SJSU-Dev-New/tools/gcc-arm-none-eabi-6-2017-q2-update/bin/../lib
 LOAD /home/marc/SJSU-Dev-New/tools/gcc-arm-none-eabi-6-2017-q2-update/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/libc_nano.a
 END GROUP
 
-.text           0x0000000000010000    0x12ecf
+.text           0x0000000000010000    0x12ed4
  FILL mask 0xff
  *(.isr_vector)
  .isr_vector    0x0000000000010000       0xcc obj//home/marc/SJSU-Dev-New/firmware/lib/L0_LowLevel/source/startup.o
@@ -3293,7 +3293,7 @@ END GROUP
                 0x00000000000100cc                . = ALIGN (0x4)
                 0x00000000000100cc                __section_table_start = .
                 0x00000000000100cc                __data_section_table = .
-                0x00000000000100cc        0x4 LONG 0x22ed8 LOADADDR (.data)
+                0x00000000000100cc        0x4 LONG 0x22edc LOADADDR (.data)
                 0x00000000000100d0        0x4 LONG 0x2007c000 ADDR (.data)
                 0x00000000000100d4        0x4 LONG 0x2fc SIZEOF (.data)
                 0x00000000000100d8                __data_section_table_end = .
@@ -4285,9 +4285,9 @@ END GROUP
                 0x000000000001752c                LabSPI::LabSPI()
                 0x000000000001752c                LabSPI::LabSPI()
  *fill*         0x000000000001752e        0x2 ff
- .text._ZN6LabSPI4initEhhhh
+ .text._ZN6LabSPI4initENS_10PeripheralEhhh
                 0x0000000000017530       0x9c obj/L5_Application/LabSPI.o
-                0x0000000000017530                LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)
+                0x0000000000017530                LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)
  .text._ZN6LabSPI8transferEh
                 0x00000000000175cc       0x3c obj/L5_Application/LabSPI.o
                 0x00000000000175cc                LabSPI::transfer(unsigned char)
@@ -5137,42 +5137,42 @@ END GROUP
                 0x0000000000020cdc                . = ALIGN (0x4)
                 0x0000000000020cdc                __symbol_table_start = .
  *(.symbol_table)
- .symbol_table  0x0000000000020cdc     0x21f3 bin/firmware.sym.o
+ .symbol_table  0x0000000000020cdc     0x21f8 bin/firmware.sym.o
                 0x0000000000020cdc                APP_SYM_TABLE
-                0x0000000000022ecf                __symbol_table_end = .
+                0x0000000000022ed4                __symbol_table_end = .
 
-.glue_7         0x0000000000022ed0        0x0
- .glue_7        0x0000000000022ed0        0x0 linker stubs
+.glue_7         0x0000000000022ed4        0x0
+ .glue_7        0x0000000000022ed4        0x0 linker stubs
 
-.glue_7t        0x0000000000022ed0        0x0
- .glue_7t       0x0000000000022ed0        0x0 linker stubs
+.glue_7t        0x0000000000022ed4        0x0
+ .glue_7t       0x0000000000022ed4        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000022ed0        0x0
- .vfp11_veneer  0x0000000000022ed0        0x0 linker stubs
+.vfp11_veneer   0x0000000000022ed4        0x0
+ .vfp11_veneer  0x0000000000022ed4        0x0 linker stubs
 
-.v4_bx          0x0000000000022ed0        0x0
- .v4_bx         0x0000000000022ed0        0x0 linker stubs
+.v4_bx          0x0000000000022ed4        0x0
+ .v4_bx         0x0000000000022ed4        0x0 linker stubs
 
-.iplt           0x0000000000022ed0        0x0
- .iplt          0x0000000000022ed0        0x0 bin/firmware.sym.o
+.iplt           0x0000000000022ed4        0x0
+ .iplt          0x0000000000022ed4        0x0 bin/firmware.sym.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000000022ed0                __exidx_start = .
+                0x0000000000022ed4                __exidx_start = .
 
-.ARM.exidx      0x0000000000022ed0        0x8
+.ARM.exidx      0x0000000000022ed4        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x0000000000022ed0        0x8 /home/marc/SJSU-Dev-New/tools/gcc-arm-none-eabi-6-2017-q2-update/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7-m/libgcc.a(_udivmoddi4.o)
-                0x0000000000022ed8                __exidx_end = .
-                0x0000000000022ed8                _etext = .
+ .ARM.exidx     0x0000000000022ed4        0x8 /home/marc/SJSU-Dev-New/tools/gcc-arm-none-eabi-6-2017-q2-update/bin/../lib/gcc/arm-none-eabi/6.3.1/thumb/v7-m/libgcc.a(_udivmoddi4.o)
+                0x0000000000022edc                __exidx_end = .
+                0x0000000000022edc                _etext = .
 
-.rel.dyn        0x0000000000022ed8        0x0
- .rel.iplt      0x0000000000022ed8        0x0 bin/firmware.sym.o
+.rel.dyn        0x0000000000022edc        0x0
+ .rel.iplt      0x0000000000022edc        0x0 bin/firmware.sym.o
 
 .uninit_RESERVED
  *(.bss.$RESERVED*)
 
-.data           0x000000002007c000      0x2fc load address 0x0000000000022ed8
+.data           0x000000002007c000      0x2fc load address 0x0000000000022edc
  FILL mask 0xff
                 0x000000002007c000                _data = .
  *(vtable)
@@ -5213,10 +5213,10 @@ END GROUP
                 0x000000002007c2fc                . = ALIGN (0x4)
                 0x000000002007c2fc                _edata = .
 
-.igot.plt       0x000000002007c2fc        0x0 load address 0x00000000000231d4
+.igot.plt       0x000000002007c2fc        0x0 load address 0x00000000000231d8
  .igot.plt      0x000000002007c2fc        0x0 bin/firmware.sym.o
 
-.bss            0x000000002007c300      0x4b8 load address 0x00000000000231d4
+.bss            0x000000002007c300      0x4b8 load address 0x00000000000231d8
                 0x000000002007c300                _bss = .
  *(.bss*)
  .bss.mp_tlm_component_list
@@ -5456,7 +5456,7 @@ END GROUP
                 0x0000000020083fe0                PROVIDE (_vStackTop, ((ORIGIN (SRAM_AHB) + LENGTH (SRAM_AHB)) - 0x20))
 OUTPUT(bin/firmware.symbols.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x40946
+.debug_info     0x0000000000000000    0x40982
  .debug_info    0x0000000000000000       0x58 bin/firmware.sym.o
  .debug_info    0x0000000000000058      0xbee obj//home/marc/SJSU-Dev-New/firmware/lib/L3_Utils/tlm/src/c_tlm_comp.o
  .debug_info    0x0000000000000c46      0xb4a obj//home/marc/SJSU-Dev-New/firmware/lib/L3_Utils/src/printf_lib.o
@@ -5511,10 +5511,10 @@ OUTPUT(bin/firmware.symbols.elf elf32-littlearm)
  .debug_info    0x00000000000399e9      0x425 obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/fat/disk/diskio.o
  .debug_info    0x0000000000039e0e     0x2495 obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/src/io_source.o
  .debug_info    0x000000000003c2a3      0xaba obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/src/storage.o
- .debug_info    0x000000000003cd5d     0x1aa2 obj/L5_Application/LabSPI.o
- .debug_info    0x000000000003e7ff     0x2147 obj/L5_Application/main.o
+ .debug_info    0x000000000003cd5d     0x1ac0 obj/L5_Application/LabSPI.o
+ .debug_info    0x000000000003e81d     0x2165 obj/L5_Application/main.o
 
-.debug_abbrev   0x0000000000000000     0xb59f
+.debug_abbrev   0x0000000000000000     0xb5c5
  .debug_abbrev  0x0000000000000000       0x45 bin/firmware.sym.o
  .debug_abbrev  0x0000000000000045      0x256 obj//home/marc/SJSU-Dev-New/firmware/lib/L3_Utils/tlm/src/c_tlm_comp.o
  .debug_abbrev  0x000000000000029b      0x2c5 obj//home/marc/SJSU-Dev-New/firmware/lib/L3_Utils/src/printf_lib.o
@@ -5569,8 +5569,8 @@ OUTPUT(bin/firmware.symbols.elf elf32-littlearm)
  .debug_abbrev  0x000000000000a247      0x113 obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/fat/disk/diskio.o
  .debug_abbrev  0x000000000000a35a      0x594 obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/src/io_source.o
  .debug_abbrev  0x000000000000a8ee      0x270 obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/src/storage.o
- .debug_abbrev  0x000000000000ab5e      0x46d obj/L5_Application/LabSPI.o
- .debug_abbrev  0x000000000000afcb      0x5d4 obj/L5_Application/main.o
+ .debug_abbrev  0x000000000000ab5e      0x480 obj/L5_Application/LabSPI.o
+ .debug_abbrev  0x000000000000afde      0x5e7 obj/L5_Application/main.o
 
 .debug_aranges  0x0000000000000000     0x1718
  .debug_aranges
@@ -5744,7 +5744,7 @@ OUTPUT(bin/firmware.symbols.elf elf32-littlearm)
  .debug_line    0x000000000000fc72      0x452 obj/L5_Application/LabSPI.o
  .debug_line    0x00000000000100c4      0x5ee obj/L5_Application/main.o
 
-.debug_str      0x0000000000000000     0xb9d5
+.debug_str      0x0000000000000000     0xb9f9
  .debug_str     0x0000000000000000      0x123 bin/firmware.sym.o
                                         0x128 (size before relaxing)
  .debug_str     0x0000000000000123      0x528 obj//home/marc/SJSU-Dev-New/firmware/lib/L3_Utils/tlm/src/c_tlm_comp.o
@@ -5853,10 +5853,10 @@ OUTPUT(bin/firmware.symbols.elf elf32-littlearm)
                                        0x1b3c (size before relaxing)
  .debug_str     0x000000000000b6e6      0x10d obj//home/marc/SJSU-Dev-New/firmware/lib/L4_IO/src/storage.o
                                         0x78c (size before relaxing)
- .debug_str     0x000000000000b7f3      0x142 obj/L5_Application/LabSPI.o
-                                       0x1456 (size before relaxing)
- .debug_str     0x000000000000b935       0xa0 obj/L5_Application/main.o
-                                       0x15c1 (size before relaxing)
+ .debug_str     0x000000000000b7f3      0x166 obj/L5_Application/LabSPI.o
+                                       0x147a (size before relaxing)
+ .debug_str     0x000000000000b959       0xa0 obj/L5_Application/main.o
+                                       0x15e5 (size before relaxing)
 
 .comment        0x0000000000000000       0x7f
  .comment       0x0000000000000000       0x7f bin/firmware.sym.o

@@ -240,7 +240,7 @@ __attribute__((section(".symbol_table"))) const char APP_SYM_TABLE[] =
 	"00011604 T Uart3::Uart3()\n"
 	"00017608 T LabSPI::selectChip()\n"
 	"00017618 T LabSPI::deselectChip()\n"
-	"00017530 T LabSPI::init(unsigned char, unsigned char, unsigned char, unsigned char)\n"
+	"00017530 T LabSPI::init(LabSPI::Peripheral, unsigned char, unsigned char, unsigned char)\n"
 	"000175cc T LabSPI::transfer(unsigned char)\n"
 	"0001752c T LabSPI::LabSPI()\n"
 	"0001752c T LabSPI::LabSPI()\n"
