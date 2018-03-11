@@ -30,19 +30,45 @@
 #include "LPC17xx.h"
 #include "UartDriver.hpp"
 
+
+QueueHandle_t q = xQueueCreate(50, sizeof(char));
+UartDriver *myUart3 = new UartDriver();
+
+
+void uart3RxInt()
+{
+    char data;
+    data = myUart3->receiveChar();
+    xQueueSendFromISR(q, &data, NULL);
+    //clear interrupt flag
+}
+
 void vTaskCode(void * pvParameters)
 {
-    UartDriver *myUart2 = new UartDriver();
-    myUart2->UartInit(2, 9600);
 
     vTaskDelay(100);
-    myUart2->transmitChar('1');
+    myUart3->transmitChar('1');
     vTaskDelay(100);
+<<<<<<< HEAD
     myUart2->transmitChar('2');
     
+=======
+    myUart3->transmitChar('2');
+>>>>>>> bf75529df9661b6a05b47a6c87e1dcbed4430380
     vTaskDelay(100);
-    myUart2->transmitChar('+');
+    myUart3->transmitChar('+');
 
+    char l, r, op;
+    xQueueReceive(q, &l, 100); //dummy
+    xQueueReceive(q, &l, 100);
+    xQueueReceive(q, &r, 100);
+    xQueueReceive(q, &op, 100);
+
+    printf("left: %c\n", l);
+    printf("right: %c\n", r);
+    printf("op: %c\n", op);
+
+    LD.setNumber(1);
 
     vTaskDelay(1000000000);
 
@@ -50,6 +76,8 @@ void vTaskCode(void * pvParameters)
 
 int main(void)
 {
+    isr_register(UART3_IRQn, uart3RxInt);
+    myUart3->UartInit(3, 9600);
     //UartDriver myUart3;
     //myUart3.UartInit(3, 9600);
 

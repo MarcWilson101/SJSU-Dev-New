@@ -1,9 +1,12 @@
 #ifndef UARTDRIVER_H
 #define UARTDRIVER_H
 
+#include "FreeRTOS.h"
 #include "LPC17xx.h"
 #include "stdint.h"
 #include "stdio.h"
+#include "lpc_isr.h"
+
 
 class UartDriver
 {
@@ -41,12 +44,6 @@ public:
      * 
      */ 
     char receiveChar();
-
-    void uart3RxInt();
-
-
-
-
 
 };
 

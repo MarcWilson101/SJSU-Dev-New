@@ -1,6 +1,8 @@
 
     #include "UartDriver.hpp"
 
+    #include "queue.h"
+
   
 
     UartDriver::UartDriver()
@@ -39,9 +41,8 @@
             LPC_UART3->LCR &= ~(1 << 7);                        //DLAB disable
             LPC_PINCON->PINSEL9 |= (3 << 24) | (3 << 26);       //4.28 as TXD3 4.29 as RXD3 (11)
 
-            //LPC_UART3->IER |= 1;                            //enable interupts for uart3 for rbr
-            //isr_register(Uart3, uart3RxInt);
-            //NVIC_EnableIRQ(Uart3);
+            LPC_UART3->IER |= 1;                            //enable interupts for uart3 for rbr
+            NVIC_EnableIRQ(UART3_IRQn);
         }
         else
         {
@@ -53,7 +54,10 @@
             LPC_UART2->DLM = (temp >> 8);
             LPC_UART2->LCR &= ~(1 << 7);                        //DLAB disable
             LPC_PINCON->PINSEL4 &= ~(1 << 16) & ~(1 << 18);     //P2.8 as TXD2 P2.9 as RXD2 (10)
-            LPC_PINCON->PINSEL4 |= (1 << 17) | (1 << 19);            
+            LPC_PINCON->PINSEL4 |= (1 << 17) | (1 << 19);         
+
+            LPC_UART2->IER |= 1;                            //enable interupts for uart2 for rbr
+            NVIC_EnableIRQ(UART2_IRQn);   
         }
         return true;
     }
@@ -88,14 +92,16 @@
         char data;
         if(periph == 2)
         {
-            while(! (LPC_UART2->LSR & (1 << 0)));   //wait for character to read
+            //while(! (LPC_UART2->LSR & (1 << 0)));   //wait for character to read
             data = LPC_UART2->RBR;
         }
         else
         {
-            while(! (LPC_UART3->LSR & (1 << 0)));   //wait for character to read
+            //while(! (LPC_UART3->LSR & (1 << 0)));   //wait for character to read
             data = LPC_UART3->RBR;
         }
+        LPC_UART3->IER &= ~(1 << 0);                    //clear interupts for uart3 for rbr
+        LPC_UART3->IER |= 1;                            //enable interupts for uart3 for rbr
         return data;
         //printf("Received: %c\n", data);     
     }
