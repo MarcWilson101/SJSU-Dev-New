@@ -50,7 +50,8 @@ obj/L5_Application/main.o: L5_Application/main.cpp \
  /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/LED.hpp \
  /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/light_sensor.hpp \
  /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/switches.hpp \
- /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/temperature_sensor.hpp
+ /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/temperature_sensor.hpp \
+ L5_Application/UartDriver.hpp
 
 /home/marc/SJSU-Dev-New/firmware/lib/L5_HighLevel/tasks.hpp:
 
@@ -155,3 +156,5 @@ obj/L5_Application/main.o: L5_Application/main.cpp \
 /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/switches.hpp:
 
 /home/marc/SJSU-Dev-New/firmware/lib/L4_IO/temperature_sensor.hpp:
+
+L5_Application/UartDriver.hpp:
