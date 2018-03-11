@@ -39,6 +39,7 @@ void vTaskCode(void * pvParameters)
     myUart2->transmitChar('1');
     vTaskDelay(100);
     myUart2->transmitChar('2');
+    
     vTaskDelay(100);
     myUart2->transmitChar('+');
 
