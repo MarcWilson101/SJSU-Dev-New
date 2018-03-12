@@ -42,6 +42,7 @@ void vTaskCode(void * pvParameters)
     vTaskDelay(100);
     myUart2->transmitChar('+');
 
+    LD.setNumber(1);
 
     vTaskDelay(1000000000);
 
