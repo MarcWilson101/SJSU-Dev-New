@@ -49,12 +49,7 @@ void vTaskCode(void * pvParameters)
     vTaskDelay(100);
     myUart3->transmitChar('1');
     vTaskDelay(100);
-<<<<<<< HEAD
     myUart2->transmitChar('2');
-    
-=======
-    myUart3->transmitChar('2');
->>>>>>> bf75529df9661b6a05b47a6c87e1dcbed4430380
     vTaskDelay(100);
     myUart3->transmitChar('+');
 
