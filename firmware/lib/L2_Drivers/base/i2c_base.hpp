@@ -45,6 +45,13 @@
  */
 #define I2C_TIMEOUT_MS          1000
 
+#define I2C_SET_READ_MODE(addr)     (addr |= 1)     ///< Set the LSB to indicate read-mode
+#define I2C_SET_WRITE_MODE(addr)    (addr &= 0xFE)  ///< Reset the LSB to indicate write-mode
+#define I2C_CHECK_READ_MODE(addr)         (addr & 1)      ///< Read address is ODD
+#define I2C_WRITE_ADDR(addr)        (addr & 0xFE)   ///< Write address is EVEN
+#define I2C_READ_ADDR(addr)         (addr | 1)      ///< Read address is ODD
+
+
 
 /**
  * I2C Base class that can be used to write drivers for all I2C peripherals.
@@ -166,6 +173,13 @@ class I2C_Base
             uint32_t        writeLength;    ///< # of bytes to write
             uint8_t         *dataRead;      ///< Buffer of the I2C Read
             uint32_t        readLength;     ///< # of bytes to read
+
+            uint8_t *slaveDataBuffer;
+            uint8_t *slaveOriginPointer;
+            uint8_t slavedataCount;
+            uint8_t slaveRegPosition;
+            uint8_t slaveByteCounter;
+
         } mI2CTransaction_t;
 
         /// The I2C Input Output frame that contains I2C transaction information
@@ -210,6 +224,9 @@ class I2C_Base
          */
         // void i2cKickOffTransfer(uint8_t devAddr, uint8_t regStart, uint8_t* pBytes, uint32_t len);
         void i2cKickOffTransfer(uint8_t addr, uint8_t * wbytes, uint32_t wlength, uint8_t * rbytes, uint32_t rlength);
+
+        void initSlave(uint8_t slaveAddr, uint8_t* buff, uint32_t size);
+
 };
 
 

@@ -37,7 +37,7 @@
             LPC_UART3->LCR = 3;                                 //8 bit transfer
             LPC_UART3->FCR |= (1 << 0);                         //enable the fifo for uart
             LPC_UART3->DLL = temp;                              //setting baud rate
-            LPC_UART3->DLM = (temp >> 8);
+            LPC_UART3->DLM = (temp << 8);
             LPC_UART3->LCR &= ~(1 << 7);                        //DLAB disable
             LPC_PINCON->PINSEL9 |= (3 << 24) | (3 << 26);       //4.28 as TXD3 4.29 as RXD3 (11)
 
@@ -51,7 +51,7 @@
             LPC_UART2->LCR = 3;                                 //8 bit transfer
             LPC_UART2->FCR |= (1 << 0);                         //enable the fifo for uart
             LPC_UART2->DLL = temp;                              //setting baud rate
-            LPC_UART2->DLM = (temp >> 8);
+            LPC_UART2->DLM = (temp << 8);
             LPC_UART2->LCR &= ~(1 << 7);                        //DLAB disable
             LPC_PINCON->PINSEL4 &= ~(1 << 16) & ~(1 << 18);     //P2.8 as TXD2 P2.9 as RXD2 (10)
             LPC_PINCON->PINSEL4 |= (1 << 17) | (1 << 19);         

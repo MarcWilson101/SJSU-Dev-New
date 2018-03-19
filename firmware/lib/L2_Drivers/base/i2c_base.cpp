@@ -25,12 +25,14 @@
 /**
  * Instead of using a dedicated variable for read vs. write, we just use the LSB of
  * the user address to indicate read or write mode.
- */
+ 
 #define I2C_SET_READ_MODE(addr)     (addr |= 1)     ///< Set the LSB to indicate read-mode
 #define I2C_SET_WRITE_MODE(addr)    (addr &= 0xFE)  ///< Reset the LSB to indicate write-mode
 #define I2C_CHECK_READ_MODE(addr)         (addr & 1)      ///< Read address is ODD
 #define I2C_WRITE_ADDR(addr)        (addr & 0xFE)   ///< Write address is EVEN
 #define I2C_READ_ADDR(addr)         (addr | 1)      ///< Read address is ODD
+*/
+
 
 void I2C_Base::handleInterrupt()
 {
@@ -224,27 +226,27 @@ void I2C_Base::i2cKickOffTransfer(uint8_t addr, uint8_t * wbytes, uint32_t wleng
     mpI2CRegs->I2CONSET = 0x20;
 }
 
-inline void I2C_Base::clearSIFlag()
+void I2C_Base::clearSIFlag()
 {
     mpI2CRegs->I2CONCLR = (1 << 3);
 }
-inline void I2C_Base::setSTARTFlag()
+void I2C_Base::setSTARTFlag()
 {
     mpI2CRegs->I2CONSET = (1 << 5);
 }
-inline void I2C_Base::clearSTARTFlag()
+void I2C_Base::clearSTARTFlag()
 {
     mpI2CRegs->I2CONCLR = (1 << 5);
 }
-inline void I2C_Base::setAckFlag()
+void I2C_Base::setAckFlag()
 {
     mpI2CRegs->I2CONSET = (1 << 2);
 }
-inline void I2C_Base::setNackFlag()
+void I2C_Base::setNackFlag()
 {
     mpI2CRegs->I2CONCLR = (1 << 2);
 }
-inline void I2C_Base::setStop()
+void I2C_Base::setStop()
 {
     clearSTARTFlag();
     mpI2CRegs->I2CONSET = (1 << 4);
@@ -432,6 +434,7 @@ __attribute__ ((weak)) I2C_Base::mStateMachineStatus_t I2C_Base::i2cStateMachine
         case dataNackedBySlave:     // no break
         case readModeNackedBySlave: // no break
         case busError:              // no break
+        
         default:
             mTransaction.error = mpI2CRegs->I2STAT;
             setStop();
