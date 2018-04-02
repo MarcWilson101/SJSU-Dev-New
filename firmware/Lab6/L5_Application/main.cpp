@@ -321,31 +321,12 @@ I2C_Base::mStateMachineStatus_t I2C_Base::i2cStateMachine()
         //slave transmitter states
         case addressReceived:
             u0_dbg_printf("In state 0xA8\n");
-            setAckFlag();
-            clearSIFlag();
-            mTransaction.slaveByteCounter = 0;
-            mTransaction.slaveRegPosition = 256;
-            mTransaction.slaveDataBuffer = mTransaction.slaveOriginPointer;
+
             break;
 
         case arbitrationReadAddressAcked:
             u0_dbg_printf("In state 0xB0\n");
-            if(mTransaction.slaveByteCounter == 0)
-            {
-                mTransaction.slaveRegPosition = mpI2CRegs->I2DAT;
-                mTransaction.slaveByteCounter++;
-                setAckFlag();
-                clearSIFlag();
-            }
-            else
-            {
-                mTransaction.slaveDataBuffer += mTransaction.slaveRegPosition;
-                mpI2CRegs->I2DAT = *(mTransaction.slaveDataBuffer);
-                setAckFlag();
-                clearSIFlag();
-                mTransaction.slaveDataBuffer++;
-                mTransaction.slaveByteCounter++;
-            }
+
             break;
 
         case dataSentAckReceived:
@@ -355,8 +336,7 @@ I2C_Base::mStateMachineStatus_t I2C_Base::i2cStateMachine()
 
         case LastByteSentNacked:
             u0_dbg_printf("In state 0xC0\n");
-            setAckFlag();
-            clearSIFlag();
+
             break;
 
         case LastByteSentAcked:
@@ -394,6 +374,26 @@ void I2C_Base::initSlave(uint8_t slaveAddr, uint8_t* buff, uint32_t size)
 
 int main(void)
 {
+    I2C2& i2c = I2C2::getInstance(); // Get I2C driver instance
+    const uint8_t slaveAddr = 0xC0;  // Pick any address other than an existing one at i2c2.hpp
+    uint8_t buffer[256] = { 0 }; // Our slave read/write buffer (This is the memory your other master board will read/write)
+
+    // I2C is already initialized before main(), so you will have to add initSlave() to i2c base class for your slave driver
+    i2c.initSlave(slaveAddr, &buffer[0], sizeof(buffer));
+
+    // I2C interrupt will (should) modify our buffer.
+    // So just monitor our buffer, and print and/or light up LEDs
+    // ie: If buffer[0] == 0, then LED ON, else LED OFF
+    uint8_t prev = buffer[0];
+    while(1)
+    {
+        if (prev != buffer[0]) {
+            prev = buffer[0];
+            printf("buffer[0] changed to %#x by the other Master Board\n", buffer[0]);
+        }
+    }
+
+    return 0;
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
 	xTaskCreate(vTaskCode, "vTaskCode", 512, ( void * ) 'A', tskIDLE_PRIORITY, NULL );
     // Alias to vSchedulerStart();
