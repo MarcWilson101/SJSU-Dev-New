@@ -37,8 +37,10 @@ void ADCDriver::adcInitBurstMode(uint8_t channels_to_enable)
 
     LPC_ADC->ADCR &= ~(0xFF);       //clear all channels
     LPC_ADC->ADCR |= (1 << 3);       //select channel 3 (p0.26)
+    LPC_ADC->ADINTEN |= (1<< 3);    //enable interrupts for channel 3
+    NVIC_EnableIRQ(ADC_IRQn);
 
-    LPC_ADC->ADCR |= (1 << 16);     //enable burst mode
+    LPC_ADC->ADCR &= ~(1 << 16);     //disable burst mode
 }
 
 /**
@@ -150,4 +152,19 @@ float ADCDriver::readADCVoltageByChannel(uint8_t adc_channel_arg)
     float voltage = readADCRawByChannel(adc_channel_arg);
     voltage = voltage/29.57;
     return voltage;
+}
+
+void ADCDriver::startADC()
+{
+    LPC_ADC->ADCR |= (1 << 24); //start now
+}
+
+void ADCDriver::stopADC()
+{
+    LPC_ADC->ADCR &= ~(3 << 24); //no start
+}
+
+void ADCDriver::clearIntFlag()
+{
+    uint8_t value = LPC_ADC->ADSTAT;//should clear flag
 }

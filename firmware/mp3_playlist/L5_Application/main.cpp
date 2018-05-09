@@ -32,11 +32,11 @@
 #include "mp3SPI.hpp"
 #include "mp3.hpp"
 #include "ADCDriver.hpp"
+#include "string"
 
 void writeReg(uint8_t address, uint8_t high, uint8_t low);
-void volumeUp();
-void volumeDown();
 void gpioInit();
+void setVolume(uint8_t newVol);
 
 typedef enum {
 	previous, next
@@ -45,14 +45,13 @@ typedef enum {
 /*GLOBALS*/
 char playlist[3][19] = { "1:track001.mp3", "1:track002.mp3", "1:track003.mp3" };
 uint8_t trackNumber = 0;
-char (*nowPlaying)[19] = &playlist[trackNumber];
-uint8_t volumeUpper = 0x4E;
-uint8_t volumeLower = 0x4E;
+// char (*nowPlaying)[19] = &playlist[trackNumber];
+uint8_t volume = 0x4E;
 bool isPlaying = true;
 LCD myLCD;
 mp3SPI mySPI;
 mp3 myMP3;
-
+ADCDriver myADC;
 /*
 void LCDWrite(void *p)
 {
@@ -71,47 +70,100 @@ void LCDWrite(void *p)
     //}
 }
 */
-
-void volume(void *p)
+float rawData;
+	uint8_t oldVolume;
+	uint8_t newVolume;
+void volumeISR()
 {
-	ADCDriver myADC;
-	myADC.adcInitBurstMode(3);
-    myADC.adcSelectPin(3);
-	float rawData;
-	uint8_t oldVolumeUpper;
-	uint8_t oldVolumeLower;
-	uint8_t newVolumeUpper, newVolumeLower;
+	//u0_dbg_printf("\n\nInside interrupt\n\n");
+	myADC.clearIntFlag();
+	//myADC.stopADC();
 
-
-	while(1)
+	oldVolume = volume;
+	newVolume = 0;
+	//vTaskDelay(100);
+	rawData = myADC.readADCRawByChannel(3);
+	//u0_dbg_printf("\n--------------------volumeUpper before: %i----------------------", rawData);
+		
+	uint16_t intRawData = int(rawData + .5) ; //cast it into an int..
+	intRawData = intRawData / 18;// * 2.5; //get 0-100 in 0-250 range
+	newVolume = 250 - intRawData;
+	//u0_dbg_printf("intRawData: %u", intRawData);
+	u0_dbg_printf("newVolume %u", newVolume);
+	//if(newVolume != oldVolume)
+	//	setVolume(100);
+	if (newVolume < 0xFE && newVolume > 0x0E) // within range
 	{
-		oldVolumeUpper = volumeUpper;
-		oldVolumeLower = volumeLower;
-		newVolumeUpper = 0;
-		newVolumeLower = 0;
-
-		//vTaskDelay(100);
-		rawData = myADC.readADCRawByChannel(3);
-		uint16_t intRawData = rawData; //cast it into an int..
-		intRawData = intRawData * 2.5; //get 0-100 in 0-250 range
-		newVolumeUpper |= intRawData >> 8;
-		newVolumeLower |= intRawData;
-
-		if(newVolumeUpper == oldVolumeUpper && newVolumeLower == oldVolumeLower)
-		{
-					//do nothing
-		}
-		else if(newVolumeUpper > oldVolumeUpper || newVolumeLower > oldVolumeLower)
-		{
-			volumeDown();
-		}
-		else if(newVolumeUpper < oldVolumeUpper || newVolumeLower < oldVolumeLower)
-		{
-			volumeUp();
-		}
+		writeReg(0x0B, newVolume, newVolume);
+		//myLCD.LCDsendVolume(newVolume);
 	}
 
+	
+	// if(newVolumeUpper == oldVolumeUpper && newVolumeLower == oldVolumeLower)
+	// {
+	// 			//do nothing
+	// }
+	// else if(newVolumeUpper > oldVolumeUpper || newVolumeLower > oldVolumeLower)
+	// {
+	// 	if(newVolumeLower - oldVolumeLower > 1)
+	// 	{
+	// 		volumeDown();
+	// 	}
+	// }
+	// else if(newVolumeUpper < oldVolumeUpper || newVolumeLower < oldVolumeLower)
+	// {
+	// 	if(oldVolumeLower - newVolumeLower > 1)
+	// 	{
+	// 		volumeUp();
+	// 	}
+	// }
+	myADC.stopADC();
 }
+
+// void volume(void *p)
+// {
+// 	ADCDriver myADC;
+// 	myADC.adcInitBurstMode(3);
+//     myADC.adcSelectPin(3);
+// 	float rawData;
+// 	uint8_t oldVolumeUpper;
+// 	uint8_t oldVolumeLower;
+// 	uint8_t newVolumeUpper, newVolumeLower;
+
+
+// 	while(1)
+// 	{
+// 		//u0_dbg_printf("\n--------------------volumeUpper before: %u----------------------", volumeUpper);
+// 		oldVolumeUpper = volumeUpper;
+// 		oldVolumeLower = volumeLower;
+// 		newVolumeUpper = 0;
+// 		newVolumeLower = 0;
+
+// 		//vTaskDelay(100);
+// 		rawData = myADC.readADCRawByChannel(3);
+// 		//u0_dbg_printf("\n--------------------volumeUpper before: %i----------------------", rawData);
+		
+// 		uint16_t intRawData = int(rawData + .5) ; //cast it into an int..
+// 		intRawData = intRawData * 2.5; //get 0-100 in 0-250 range
+// 		newVolumeUpper |= intRawData >> 8;
+// 		newVolumeLower |= intRawData;
+
+// 		if(newVolumeUpper == oldVolumeUpper && newVolumeLower == oldVolumeLower)
+// 		{
+// 					//do nothing
+// 		}
+// 		else if(newVolumeUpper > oldVolumeUpper || newVolumeLower > oldVolumeLower)
+// 		{
+// 			volumeDown();
+// 		}
+// 		else if(newVolumeUpper < oldVolumeUpper || newVolumeLower < oldVolumeLower)
+// 		{
+// 			volumeUp();
+// 		}
+// 		//u0_dbg_printf("\n--------------------volumeUpper after: %u----------------------", volumeUpper);
+// 	}
+
+//}
 
 
 
@@ -120,6 +172,7 @@ void readMP3(void *p)
 {
 	while(1)
     {
+		char (*nowPlaying)[19] = &playlist[trackNumber];
 		bool fileOpen;
 		playBack_t playBackState = next;
 
@@ -134,15 +187,26 @@ void readMP3(void *p)
 		int fileSize = ftell(file);
 		fseek(file, 0, SEEK_SET);
 		myLCD.LCDsendCommand(CLEAR);
-		myLCD.LCDsendVolume(volumeUpper);
+		myLCD.LCDsendVolume(volume);
 
 		//while loop reads data from buffer (512 bytes at a time) and sends to Decoder
+		uint32_t j = 0;
 		while (fileOpen) 
 		{
 			for (int i = 0; i < fileSize; i = i + 512) 
 			{
+				j++;
+				if(j == 5)
+				{
+					j = 0;
+					myADC.startADC();
+				}
 				fread(SDbuffer, 1, (size_t) 512, file); // Read 32byte block from SD
 				xQueueSend(my_queue, &SDbuffer, portMAX_DELAY);
+				// if(i = 200)
+				// {
+				// 	myADC.startADC();
+				// }
 			} // end for loop
 			fclose(file);
 			fileOpen = false;
@@ -159,17 +223,40 @@ void readMP3(void *p)
 
 	}
 }
+void volumeControl(void * p)
+{
+TickType_t xLastWakeTime;
+const TickType_t xFrequency = 500;
+
+	// Initialise the xLastWakeTime variable with the current time.
+	//xLastWakeTime = xTaskGetTickCount();
+
+	for( ;; )
+	{
+		// Wait for the next cycle.
+		//vTaskDelayUntil( &xLastWakeTime, xFrequency );
+		vTaskDelay(100);
+		myADC.startADC();
+		// Perform action here.
+	}
+}
 
 void sendMP3(void *p)
 {
-	volumeUp();
-
+	//u0_dbg_printf("\n--------\n--\n--\n--\n--\n----volumeUpper original: %u---\n--\n--\n--\n-------------", volumeUpper);
+	
     uint8_t *mp3ptr;
 	uint16_t x = 0;
 	while(1)
     {
 		x = 0;
+		//uint32_t y = 0;
 		if (xQueueReceive(my_queue, &mp3ptr, portMAX_DELAY)) { 
+			//if(y%10 == 0)
+			//{
+			//	myADC.startADC();
+			//}
+			//y++;
 			while (x < 512) {
 				while (myMP3.checkDREQ() == 0);
 				myMP3.selectDCS();			
@@ -189,15 +276,20 @@ int main(void)
 	myLCD.LCDinit();
 	mySPI.mp3SPIinit();
 	gpioInit();
-	myMP3.mp3Init(volumeUpper, volumeLower);
+	myMP3.mp3Init(volume, volume);	
+	isr_register(ADC_IRQn, volumeISR);
+	myADC.adcInitBurstMode(3);
+    myADC.adcSelectPin(3);
+	myADC.startADC();
+	setVolume(volume);
 
     writeReg(0x03, 0X88, 0x00); //set clock rate on VS1053 (Decoder) read opcode
-    writeReg(0x0B, volumeUpper, volumeLower); //set volume of VS1053 (Decoder)
+    writeReg(0x0B, volume, volume); //set volume of VS1053 (Decoder)
 
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
     xTaskCreate(readMP3, "readMP3", 512, ( void * ) 'A', 2, NULL );
     xTaskCreate(sendMP3, "sendMP3", 512, ( void * ) 'A', 1, NULL );
-	//xTaskCreate(volume, "volume", 512, (void * ) 'A', 1, NULL);
+	//xTaskCreate(volumeControl, "volumeControl", 512, (void * ) 'A', 2, NULL);
     
     // Alias to vSchedulerStart();
     scheduler_start();
@@ -245,23 +337,34 @@ void resumeSendMP3_task() {
 	vTaskResume(
 			scheduler_task::getTaskPtrByName("sendmp3_task")->getTaskHandle());
 }
-void volumeUp() 
+// void volumeUp() 
+// {
+// 	if(volumeUpper != 0x0E){
+// 		volumeUpper -= 0x10;
+// 		volumeLower -= 0x10;
+// 		writeReg(0x0B, volumeUpper, volumeLower);
+// 	}
+//     myLCD.LCDsendCommand(CLEAR);
+// 	myLCD.LCDsendCommand(LINE1);
+// 	myLCD.LCDsendVolume(volumeUpper);
+// }
+// void volumeDown() 
+// {
+// 	if (volumeUpper != 0xFE) {
+// 		volumeUpper += 0x10;
+// 		volumeLower += 0x10;
+// 		writeReg(0x0B, volumeUpper, volumeLower);
+// 	}
+// 	myLCD.LCDsendVolume(volumeUpper);
+// }
+
+void setVolume(uint8_t newVol)
 {
-	if(volumeUpper != 0x0E){
-		volumeUpper -= 0x10;
-		volumeLower -= 0x10;
-		writeReg(0x0B, volumeUpper, volumeLower);
+	if (newVol < 0xFE && newVol > 0x0E) // within range
+	{
+		writeReg(0x0B, newVol, newVol);
+		myLCD.LCDsendVolume(newVol);
 	}
-	myLCD.LCDsendVolume(volumeUpper);
-}
-void volumeDown() 
-{
-	if (volumeUpper != 0xFE) {
-		volumeUpper += 0x10;
-		volumeLower += 0x10;
-		writeReg(0x0B, volumeUpper, volumeLower);
-	}
-	myLCD.LCDsendVolume(volumeUpper);
 }
 
 

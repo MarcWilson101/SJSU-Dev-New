@@ -123,7 +123,7 @@ void LCD::LCDsendVolume(uint8_t volume)
 	char volumeUpper = (char)((volume / 10) +'0'); // MSB of volume
 	char volumeLower = (char)((volume % 10) + '0'); // LSB of volume
 
-	LCDsendCommand(LINE2);
+	LCDsendCommand(LINE1);
 	char vol[] = "Volume:";
 	LCDsendString(vol);
 	LCDsendChar(volumeUpper);

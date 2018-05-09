@@ -73,6 +73,10 @@ public:
     * @param adc_channel_arg is the number (0 through 7) of the desired ADC channel.
     */
     float readADCVoltageByChannel(uint8_t adc_channel_arg);
+
+    void stopADC();
+    void startADC();
+    void clearIntFlag();
 };
 
 #endif
