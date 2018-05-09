@@ -23,25 +23,26 @@
  * 			@see L0_LowLevel/lpc_sys.h if you wish to override printf/scanf functions.
  *
  */
-#include "FreeRTOS.h"
-#include <stdio.h>
-#include "tasks.hpp"
-#include "utilities.h"
 #include "io.hpp"
-#include "queue.h"
 #include "event_groups.h"
 #include "ff.h"
-#include "printf_lib.h"
-#include "acceleration_sensor.hpp"
-#include "storage.hpp"
-#include "src/FileSystemObject.hpp"
-#include "utilities.h"
+#include "FreeRTOSConfig.h"
+#include "FreeRTOS.h"
+#include "tasks.hpp"
+#include <task.h>
+#include <stdio.h>
+#include "queue.h"
 
 QueueHandle_t sensorQ = xQueueCreate(1000, sizeof(int));
 
 EventGroupHandle_t xWatchDogEventGroup = xEventGroupCreate();
 EventBits_t watchdogBits;
-//xTaskGetHandle( vProducer );
+
+const char *pcNameToLookup1 = "vProducer";
+//TaskHandle_t xProducerHandle = xTaskGetHandle( pcNameToLookup1 );
+
+const char *pcNameToLookup = "vConsumer";
+//TaskHandle_t xConsumerHandle = xTaskGetHandle( pcNameToLookup );
 
 void vProducer(void * pvParameters)
 {
@@ -57,30 +58,31 @@ void vProducer(void * pvParameters)
         {
             vTaskDelayMs(1);
             sensorValues += LS.getRawValue();
-            //printf("sensorValues: %i\n", sensorValues);
         }
         avg = sensorValues / 100;
-        //printf("avg: %i\n", avg);
-        xQueueSend(sensorQ, ( void * ) &avg, 1000000);
+        xQueueSend(sensorQ, ( void * ) &avg, portMAX_DELAY);
+        //vTaskDelayMs(10000);
         watchdogBits = xEventGroupSetBits(xWatchDogEventGroup, (1 << 1));
+        
     }
 }
 
 void vConsumer(void * pvParameters)
 {
-    //xTaskGetHandle( vConsumer );
     //char c = (char)((uint32_t)pvParameters);
     int avg;
-    int time = 0;
+    int time;
 
     while(1)
     {
         vTaskDelayMs(100);
-        avg = xQueueReceive(sensorQ, &avg, portMAX_DELAY);
-        printf("avg from q: %i\n", avg);
+        xQueueReceive(sensorQ, &avg, portMAX_DELAY);
+        time = xTaskGetTickCount();
+        //printf("avg from q: %i\n", avg);
         FILE *fp = fopen("0:sensory.txt", "a+");
         fprintf(fp, "%i, %i\n", time, avg);
         fclose(fp);
+        //vTaskDelayMs(10000);
         watchdogBits = xEventGroupSetBits(xWatchDogEventGroup, (1 << 2));
     }
 
@@ -92,31 +94,48 @@ void vWatchDog(void * pvParameter)
      
     while(1)
     {
-        printf("Checking for watchdog bits");
+        //printf("Checking for watchdog bits");
         watchdogBits = xEventGroupWaitBits(xWatchDogEventGroup, (1 << 1), pdTRUE, pdFALSE, xTicksToWait);
         watchdogBits = xEventGroupWaitBits(xWatchDogEventGroup, (1 << 2), pdTRUE, pdFALSE, xTicksToWait);
         if((watchdogBits & (1 << 1)) == 0)
         {
             FILE *fp1 = fopen("stuck.txt", "a+");
-            fprintf(fp1, "Producer stuck" );
+            fprintf(fp1, "Producer stuck\n" );
             fclose(fp1);
         }
         else if((watchdogBits & (1 << 2)) == 0)
         {
             FILE *fp2 = fopen("stuck.txt", "a+");
-            fprintf(fp2, "Consumer stuck" );
+            fprintf(fp2, "Consumer stuck\n" );
             fclose(fp2);
         }
         //vTaskDelay(1000);
     }
 }
+/*
+void vCPUStats(void * pvParameter)
+{
+    char *pcWriteBuffer;
+    while(1)
+    {
+        vTaskDelayMs(1000);
+        FILE *fp3 = fopen("cpu.txt", "a+");
+        vTaskGetRunTimeStats( pcWriteBuffer );
+        fprintf(fp3, "cpu info: %s", pcWriteBuffer);
+        fclose(fp3);
+    }
+}
+*/
 
 int main(void)
 {
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
-	xTaskCreate(vProducer, "vProducer", 512, ( void * ) 'A', 2, NULL );
-    xTaskCreate(vConsumer, "vConsumer", 512, ( void * ) 'A', 2, NULL );
+	xTaskCreate(vProducer, "vProducer", 512, ( void * ) 'A', 2, NULL );//&xProducerHandle );
+    xTaskCreate(vConsumer, "vConsumer", 512, ( void * ) 'A', 2, NULL );//&xConsumerHandle );
     xTaskCreate(vWatchDog, "vWatchDog", 512, ( void * ) 'A', 1, NULL );
+    //xTaskCreate(vCPUStats, "vCPUStats", 512, ( void * ) 'A', 1, NULL );
+    
+
     // Alias to vSchedulerStart();
     scheduler_start();
     return -1;

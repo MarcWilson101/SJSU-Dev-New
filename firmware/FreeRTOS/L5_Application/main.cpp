@@ -24,37 +24,47 @@
  *
  */
 #include <stdio.h>
+#include "FreeRTOS.h"
+#include "task.h"
 #include "tasks.hpp"
-#include "utilities.h"
-#include "io.hpp"
+#include "queue.h"
 
-inline bool CHECK_BIT(int var, int pos)
+QueueHandle_t qh = 0;
+
+
+void rx(void *p)
 {
-    return (bool)(var & (1 << pos));
+    int item = 0;
+    puts("rx task");
+    if (xQueueReceive(qh, &item, portMAX_DELAY))
+    {
+        puts("Rx received an item!");
+    }
+    vTaskSuspend(NULL);
+    puts("Rx is suspended!");
 }
 
-void vTaskCode(void * pvParameters)
+void tx(void *p)
 {
-    char c = (char)((uint32_t)pvParameters);
+    int item = 0;
     while(1)
     {
-        for(int i = 0; i < 16; i++)
-        {
-            for(int j = 1; j < 5; j++)
-            {
-                LE.set((5-j), CHECK_BIT(i,j-1));
-            }
-            LD.setNumber(i);
-            // printf("(%c) Hello World 0x%X\n", c, i);
-	    	vTaskDelay(1000);
-        }
+        puts("Going to send an item.");
+        xQueueSend(qh, &item, 0);
+        puts("Did I send an item?");
+
+        xQueueSend(qh), &item, portMAX_DELAY);
+        puts("I must have sent an item");
     }
 }
 
 int main(void)
 {
+    qh = xQueueCreate(2, sizeof(int));
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
-	xTaskCreate(vTaskCode, "vTaskCode", 512, ( void * ) 'A', tskIDLE_PRIORITY, NULL );
+	xTaskCreate(rx, "rx", 512, ( void * ) 'A', PRIORITY_LOW, NULL );
+    xTaskCreate(tx, "tx", 512, ( void * ) 'A', PRIORITY_HIGH, NULL );
+    
     // Alias to vSchedulerStart();
     scheduler_start();
     return -1;

@@ -1,69 +1,69 @@
-0001da3c T abort
+0001da30 T abort
 00013004 T adc0_get_reading
 00012f90 T adc0_init
 00012f24 t adc0_start_conversion
 00012f48 T ADC_IRQHandler
-0001cda0 T __adddf3
-0001d1f0 T __addsf3
-00024d1c T __aeabi_cdcmpeq
-00024d1c T __aeabi_cdcmple
-00024d0c T __aeabi_cdrcmple
-0001d144 T __aeabi_d2f
-00024dbc T __aeabi_d2iz
-0001d104 T __aeabi_d2uiz
-0001cda0 T __aeabi_dadd
-00024d2c T __aeabi_dcmpeq
-00024d68 T __aeabi_dcmpge
-00024d7c T __aeabi_dcmpgt
-00024d54 T __aeabi_dcmple
-00024d40 T __aeabi_dcmplt
-00024d90 T __aeabi_dcmpun
-00024ab0 T __aeabi_ddiv
-0002485c T __aeabi_dmul
-0001cd94 T __aeabi_drsub
-0001cd9c T __aeabi_dsub
-0001d05c T __aeabi_f2d
-0001d6a0 T __aeabi_f2iz
-0001d6ec T __aeabi_f2uiz
-0001d1f0 T __aeabi_fadd
-0001d568 T __aeabi_fdiv
-0001d400 T __aeabi_fmul
-0001d1e4 T __aeabi_frsub
-0001d1ec T __aeabi_fsub
-0001d038 T __aeabi_i2d
-0001d358 T __aeabi_i2f
-0001da38 W __aeabi_idiv0
-0001d0a8 T __aeabi_l2d
-0001d384 T __aeabi_l2f
-0001da38 W __aeabi_ldiv0
-0001cd7c T __aeabi_llsl
-0001d018 T __aeabi_ui2d
-0001d350 T __aeabi_ui2f
-0001d098 T __aeabi_ul2d
-0001d374 T __aeabi_ul2f
-0001d72c T __aeabi_uldivmod
-000238ea T __any_on
-0001e63c T __ascii_mbtowc
-000219a4 T __ascii_wctomb
-00021ac0 T asctime
-00021aec T asctime_r
-0001cd7c T __ashldi3
-0001da4a T atoi
-00023724 T __b2d
-0002315c T _Balloc
-000231c4 T _Bfree
+0001cd94 T __adddf3
+0001d1e4 T __addsf3
+00024d14 T __aeabi_cdcmpeq
+00024d14 T __aeabi_cdcmple
+00024d04 T __aeabi_cdrcmple
+0001d138 T __aeabi_d2f
+00024db4 T __aeabi_d2iz
+0001d0f8 T __aeabi_d2uiz
+0001cd94 T __aeabi_dadd
+00024d24 T __aeabi_dcmpeq
+00024d60 T __aeabi_dcmpge
+00024d74 T __aeabi_dcmpgt
+00024d4c T __aeabi_dcmple
+00024d38 T __aeabi_dcmplt
+00024d88 T __aeabi_dcmpun
+00024aa8 T __aeabi_ddiv
+00024854 T __aeabi_dmul
+0001cd88 T __aeabi_drsub
+0001cd90 T __aeabi_dsub
+0001d050 T __aeabi_f2d
+0001d694 T __aeabi_f2iz
+0001d6e0 T __aeabi_f2uiz
+0001d1e4 T __aeabi_fadd
+0001d55c T __aeabi_fdiv
+0001d3f4 T __aeabi_fmul
+0001d1d8 T __aeabi_frsub
+0001d1e0 T __aeabi_fsub
+0001d02c T __aeabi_i2d
+0001d34c T __aeabi_i2f
+0001da2c W __aeabi_idiv0
+0001d09c T __aeabi_l2d
+0001d378 T __aeabi_l2f
+0001da2c W __aeabi_ldiv0
+0001cd70 T __aeabi_llsl
+0001d00c T __aeabi_ui2d
+0001d344 T __aeabi_ui2f
+0001d08c T __aeabi_ul2d
+0001d368 T __aeabi_ul2f
+0001d720 T __aeabi_uldivmod
+000238e2 T __any_on
+0001e630 T __ascii_mbtowc
+0002199c T __ascii_wctomb
+00021ab8 T asctime
+00021ae4 T asctime_r
+0001cd70 T __ashldi3
+0001da3e T atoi
+0002371c T __b2d
+00023154 T _Balloc
+000231bc T _Bfree
 00010148 W BOD_IRQHandler
 2007c300 B _bss
 000100d8 T __bss_section_table
 000100e0 T __bss_section_table_end
-0001da54 T calloc
-0001ebc0 T _calloc_r
+0001da48 T calloc
+0001ebb4 T _calloc_r
 00010148 W CANAct_IRQHandler
 00013284 t CAN_handle_isr
 00013328 T CAN_IRQHandler
 00013250 t CAN_tx_now
 00019428 t check_fs
-0001ddfc T _cleanup_r
+0001ddf0 T _cleanup_r
 000120d8 T c_list_create
 00012156 T c_list_find_elm
 00012182 T c_list_for_each_elm
@@ -71,28 +71,28 @@
 000120f2 T c_list_insert_elm_end
 000120ec T c_list_node_count
 0001766c T _close
-00021b38 T _close_r
+00021b30 T _close_r
 000196e4 T clust2sect
-00024c90 T __cmpdf2
+00024c88 T __cmpdf2
 00010da2 t cmp_tlm_one_comp
-000238b6 T __copybits
+000238ae T __copybits
 000198f2 t create_chain
-000273e4 t cst.6348
-0002791c t CSWTCH.70
-0001da64 T ctime
-00027dc5 T _ctype_
-0001f010 T __cvt
-0001c87e T __cxa_guard_acquire
-0001c896 T __cxa_guard_release
-0001c89c T __cxa_pure_virtual
-000237c8 T __d2b
+000273dc t cst.6348
+00027914 t CSWTCH.70
+0001da58 T ctime
+00027d95 T _ctype_
+0001f004 T __cvt
+0001c872 T __cxa_guard_acquire
+0001c88a T __cxa_guard_release
+0001c890 T __cxa_pure_virtual
+000237c0 T __d2b
 2007c000 D _data
 000100cc T __data_section_table
 000100d8 T __data_section_table_end
 2007c7ec B _daylight
-00027d8c t day_name.4714
-00027c08 t _DAYS_BEFORE_MONTH
-00027bd8 t DAYS_IN_MONTH
+00027d5c t day_name.4714
+00027bd8 t _DAYS_BEFORE_MONTH
+00027ba8 t DAYS_IN_MONTH
 000121d6 T delay_ms
 000121ac T delay_us
 00019a80 t dir_find.part.9
@@ -106,11 +106,11 @@
 0001bf8a T disk_read
 0001bf7a T disk_status
 0001bfc2 T disk_write
-00021b58 T div
-00024ab0 T __divdf3
-0001d568 T __divsf3
+00021b50 T div
+00024aa8 T __divdf3
+0001d55c T __divsf3
 00010148 W DMA_IRQHandler
-00021c98 T _dtoa_r
+00021c90 T _dtoa_r
 2007c7fc B _ebss
 2007c300 D _edata
 00010148 W EINT0_IRQHandler
@@ -121,44 +121,44 @@
 000131a0 T EINT3_IRQHandler
 00010148 W ENET_IRQHandler
 2007c2fc D environ
-00024844 T __env_lock
-00024846 T __env_unlock
-00024c90 T __eqdf2
+0002483c T __env_lock
+0002483e T __env_unlock
+00024c88 T __eqdf2
 2007c7f8 B errno
-0001da74 T __errno
+0001da68 T __errno
 00016070 T eTaskGetState
-00028008 R _etext
-00027356 t ExCvt
-00028008 R __exidx_end
-00028000 T __exidx_start
+00027fd8 R _etext
+0002734e t ExCvt
+00027fd8 R __exidx_end
+00027fd0 T __exidx_start
 00017334 T _exit
-0001f0c8 T __exponent
-0001d05c T __extendsfdf2
+0001f0bc T __exponent
+0001d050 T __extendsfdf2
 2007c6f8 b FatFs
-0001db24 T fclose
+0001db18 T fclose
 0001a734 T f_close
-0001da80 T _fclose_r
+0001da74 T _fclose_r
 0001b274 T ff_convert
 0001b2d4 T ff_cre_syncobj
 0001b2e8 T ff_del_syncobj
-0001dc98 T fflush
-0001dc44 T _fflush_r
+0001dc8c T fflush
+0001dc38 T _fflush_r
 0001b312 T ff_rel_grant
 0001b2ec T ff_req_grant
 0001b2b0 T ff_wtoupper
-0001dd14 T fgetc
-0001dcbc T _fgetc_r
+0001dd08 T fgetc
+0001dcb0 T _fgetc_r
 0001a98a T f_getfree
-0001dde8 T fgets
-0001dd24 T _fgets_r
-00022f0c T _findenv_r
+0001dddc T fgets
+0001dd18 T _fgets_r
+00022f04 T _findenv_r
 00017298 t findslot
 00019474 t find_volume
-0001dfe8 T fiprintf
-00024dbc T __fixdfsi
-0001d6a0 T __fixsfsi
-0001d104 T __fixunsdfsi
-0001d6ec T __fixunssfsi
+0001dfdc T fiprintf
+00024db4 T __fixdfsi
+0001d694 T __fixsfsi
+0001d0f8 T __fixunsdfsi
+0001d6e0 T __fixunssfsi
 0001bf28 T flash_chip_erase
 0001be0c T flash_get_page_count
 0001be2c T flash_get_page_size
@@ -170,47 +170,47 @@
 0001be38 T flash_supports_metadata
 0001bda0 T flash_write_permanent_id
 0001bd1c T flash_write_sectors
-0001d0a8 T __floatdidf
-0001d384 T __floatdisf
-0001d038 T __floatsidf
-0001d358 T __floatsisf
-0001d098 T __floatundidf
-0001d374 T __floatundisf
-0001d018 T __floatunsidf
-0001d350 T __floatunsisf
+0001d09c T __floatdidf
+0001d378 T __floatdisf
+0001d02c T __floatsidf
+0001d34c T __floatsisf
+0001d08c T __floatundidf
+0001d368 T __floatundisf
+0001d00c T __floatunsidf
+0001d344 T __floatunsisf
 0001a758 T f_lseek
 0001ab10 T f_mkdir
 0001ad80 T f_mkfs
 0001a1e4 T f_mount
 00019ba0 t follow_path
-0001dfd8 T fopen
+0001dfcc T fopen
 0001a260 T f_open
 0001a8a6 T f_opendir
-0001df58 T _fopen_r
+0001df4c T _fopen_r
 000113a4 t for_each_alarm_callback
 00011380 t for_each_recur_alarm_callback
-00027ce0 t fpi.6129
-00027cf4 t fpinan.6165
-0001dfe8 T fprintf
-0001e09c T fputs
-0001e00c T _fputs_r
+00027cb0 t fpi.6129
+00027cc4 t fpinan.6165
+0001dfdc T fprintf
+0001e090 T fputs
+0001e000 T _fputs_r
 0001a38e T f_read
 0001a92c T f_readdir
-0001e62c T free
-0001ebdc T _free_r
+0001e620 T free
+0001ebd0 T _free_r
 0001ac62 T f_rename
-0001e0b0 T _fseeko_r
-0001e0ac T _fseek_r
+0001e0a4 T _fseeko_r
+0001e0a0 T _fseek_r
 2007c700 b Fsid
 000176c0 T _fstat
-000228ac T _fstat_r
+000228a4 T _fstat_r
 0001a6aa T f_sync
 0001aa52 T f_unlink
-0001e1d0 T _fwalk
-0001e208 T _fwalk_reent
-0001e2e0 T fwrite
+0001e1c4 T _fwalk
+0001e1fc T _fwalk_reent
+0001e2d4 T fwrite
 0001a4fe T f_write
-0001e244 T _fwrite_r
+0001e238 T _fwrite_r
 2007c6ec b g_ack_queue
 2007c360 B g_adc_mutex
 2007c364 B g_adc_result_queue
@@ -220,35 +220,35 @@
 2007c702 b g_card_type
 2007c0dd d g_disk_status
 2007c5b8 b g_driver
-00024c80 T __gedf2
+00024c78 T __gedf2
 2007c334 b g_empty_buffer_queue
 2007c5cc b g_error_mask
-00022f8c T _getenv_r
+00022f84 T _getenv_r
 000196fa T get_fat
 00019178 T get_fattime
 00019268 t get_fileinfo
-00022964 T __gethex
+0002295c T __gethex
 0001922e t get_ldnumber
 00017344 T _getpid
-00020240 T _getpid_r
+00020234 T _getpid_r
 0001782c T _gettimeofday
-00022f9c T _gettimeofday_r
+00022f94 T _gettimeofday_r
 00010d50 t get_tlm_one_comp
-00022fc0 T __gettzinfo
+00022fb8 T __gettzinfo
 2007c3c0 b g_freertos_runtime_timer_start
 2007c338 b g_highest_file_write_time
 2007c520 b g_input_dev_fptr
 2007c304 b g_list_recur_alarms
 2007c314 b g_list_timed_alarms
-00027bcc T _global_impure_ptr
+00027b9c T _global_impure_ptr
 2007c148 D __global_locale
-0001c66c t _GLOBAL__sub_I_sensorQ
+0001c660 t _GLOBAL__sub_I_sensorQ
 2007c5cd b g_locked
 2007c33c b g_logger_calls
 2007c000 d g_logger_printf_mask
 2007c5ce b g_mesh_pnd_pkts
 2007c65e b g_mesh_stats
-00022fc8 T gmtime_r
+00022fc0 T gmtime_r
 2007c6f0 b g_nrf_activity_sem
 2007c66a b g_our_name
 2007c0d4 d g_our_node_id
@@ -268,13 +268,13 @@
 2007c6d6 b g_rpt_node
 2007c6d7 b g_rte_table
 2007c6f4 b g_rx_queue
-00024c80 T __gtdf2
+00024c78 T __gtdf2
 2007c34c b g_write_buffer_queue
 0001313c t handle_eint_list
-0002293a T __hexdig_fun
-00022dec T __hexnan
-000232e4 T __hi0bits
-00023380 T __i2b
+00022932 T __hexdig_fun
+00022de4 T __hexnan
+000232dc T __hi0bits
+00023378 T __i2b
 00010148 W I2C0_IRQHandler
 00010148 W I2C1_IRQHandler
 00012aa4 T I2C2_IRQHandler
@@ -282,14 +282,14 @@
 2007c0e8 d impure_data
 2007c0e4 D _impure_ptr
 00017348 T _init
-00028000 T __init_array_end
-00027ffc T __init_array_start
+00027fd0 T __init_array_end
+00027fcc T __init_array_start
 2007c7f4 b initial_env
 2007c528 b initialized.8352
-0001fcb8 T iprintf
+0001fcac T iprintf
 000176d0 T _isatty
-000230f8 T _isatty_r
-00020028 T iscanf
+000230f0 T _isatty_r
+0002001c T iscanf
 000121c8 T is_freertos_running
 00010118 W isr_bus_fault
 00010138 W isr_debug_mon
@@ -303,19 +303,19 @@
 00010158 W isr_sys_tick
 00010128 W isr_usage_fault
 00017324 T _kill
-0002021c T _kill_r
+00020210 T _kill_r
 2007c044 d lastfh.8319
-00024c88 T __ledf2
-0001fe84 t lflush
-000273d6 t LfnOfs
-0001e2fc T __libc_init_array
-00023322 T __lo0bits
-00023118 T __localeconv_l
-0002311c T _localeconv_r
-0001e538 T __locale_ctype_ptr
-0001e530 T __locale_ctype_ptr_l
-0001e344 T localtime
-0001e368 T localtime_r
+00024c80 T __ledf2
+0001fe78 t lflush
+000273ce t LfnOfs
+0001e2f0 T __libc_init_array
+0002331a T __lo0bits
+00023110 T __localeconv_l
+00023114 T _localeconv_r
+0001e52c T __locale_ctype_ptr
+0001e524 T __locale_ctype_ptr_l
+0001e338 T localtime
+0001e35c T localtime_r
 00011e54 T logger_get_blocked_call_count
 00011bf8 t logger_get_buffer_ptr
 00011e60 T logger_get_highest_file_write_time_ms
@@ -335,31 +335,31 @@
 00013370 T lpc_timer_enable
 00013350 t lpc_timer_get_struct
 0001741c T _lseek
-00023138 T _lseek_r
-00023548 T __lshift
-00022da2 t L_shift
-00024c88 T __ltdf2
-0001c5f0 T main
-0001ebac T mallinfo
-0001ec74 T _mallinfo_r
-0001e61c T malloc
+00023130 T _lseek_r
+00023540 T __lshift
+00022d9a t L_shift
+00024c80 T __ltdf2
+0001c5e4 T main
+0001eba0 T mallinfo
+0001ec68 T _mallinfo_r
+0001e610 T malloc
 2007c7a0 B __malloc_current_mallinfo
 2007c7c8 B __malloc_free_list
 00017824 T __malloc_lock
-0001ecd8 T _malloc_r
+0001eccc T _malloc_r
 2007c7cc B __malloc_sbrk_start
 00017828 T __malloc_unlock
-00024848 T _malloc_usable_size_r
-00022dc6 T __match
-000235ea T __mcmp
+00024840 T _malloc_usable_size_r
+00022dbe T __match
+000235e2 T __mcmp
 00010148 W MCPWM_IRQHandler
-0002361e T __mdiff
-0001e660 T memchr
-0001e67c T memcmp
-0001e69a T memcpy
+00023616 T __mdiff
+0001e654 T memchr
+0001e670 T memcmp
+0001e68e T memcpy
 000191ca t mem_cpy
-0001e6b0 T memmove
-0001e6e4 T memset
+0001e6a4 T memmove
+0001e6d8 T memset
 00019202 t mem_set
 000180fc t mesh_find_rte_tbl_entry
 0001841c T mesh_form_pkt
@@ -385,21 +385,21 @@
 0001840c T mesh_set_retry_count
 00018120 t mesh_update_rte_scores
 00018040 t mesh_update_soft_timers
-0001e8b4 T mktime
-00027da1 t mon_name.4715
-00027c38 T __month_lengths
+0001e8a8 T mktime
+00027d71 t mon_name.4715
+00027c08 T __month_lengths
 000193f4 t move_window
-00027ed8 T __mprec_bigtens
-00027f00 T __mprec_tens
+00027ea8 T __mprec_bigtens
+00027ed0 T __mprec_tens
 2007c300 b mp_tlm_component_list
 000100f0 t _MSP
 2007c358 b mSpi0Lock
-0002485c T __muldf3
-0001d400 T __mulsf3
-000231f2 T __multadd
-00023392 T __multiply
-000201b4 T nanf
-00024c90 T __nedf2
+00024854 T __muldf3
+0001d3f4 T __mulsf3
+000231ea T __multadd
+0002338a T __multiply
+000201a8 T nanf
+00024c88 T __nedf2
 00018b7c T nordic_clear_all_intr_flags
 00018c4c T nordic_clear_packet_available_flag
 00018bdc T nordic_clear_packet_sent_flag
@@ -437,19 +437,19 @@
 00018fdc t nrf_irq_callback
 00017520 T _open
 2007c52c b openfiles
-0001fc94 T _open_r
-00027fc8 t p05.6047
+0001fc88 T _open_r
+00027f98 t p05.6047
 00010148 W PLL0_IRQHandler
 00010148 W PLL1_IRQHandler
-000234ac T __pow5mult
+000234a4 T __pow5mult
 0001b3b8 T power_off
-00027ffc T __preinit_array_end
-00027ffc T __preinit_array_start
+00027fcc T __preinit_array_end
+00027fcc T __preinit_array_start
 2007c7e8 b prev_tzenv
-0001fcb8 T printf
-0001f5a4 T _printf_common
-0001f134 W _printf_float
-0001f694 T _printf_i
+0001fcac T printf
+0001f598 T _printf_common
+0001f128 W _printf_float
+0001f688 T _printf_i
 00015e40 t prvAddCurrentTaskToDelayedList
 00016cac t prvCopyDataFromQueue
 00016bfc t prvCopyDataToQueue
@@ -462,8 +462,8 @@
 00015c54 t prvTaskExitError
 00016cd4 t prvUnlockQueue
 00019820 T put_fat
-0001fda0 T puts
-0001fce8 T _puts_r
+0001fd94 T puts
+0001fcdc T _puts_r
 2007c7fc B _pvHeapStart
 00015be0 T pvPortMalloc
 000169a0 T pvTaskIncrementMutexHeldCount
@@ -476,21 +476,21 @@
 00015c88 T pxPortInitialiseStack
 2007c3d8 b pxReadyTasksLists
 00010148 W QEI_IRQHandler
-00021b80 t quorem
-0002020c T raise
-000201bc T _raise_r
-0001fe00 T rand
-00023866 T __ratio
+00021b78 t quorem
+00020200 T raise
+000201b0 T _raise_r
+0001fdf4 T rand
+0002385e T __ratio
 0001b3dc T rcvr_datablock
 00017380 T _read
-00024520 T _read_r
-0001fe74 T realloc
-0002392c T _realloc_r
+00024518 T _read_r
+0001fe68 T realloc
+00023924 T _realloc_r
 00017240 t remap_fatfs_errors
 000172e4 t remap_handle
 0001a18c t remove_chain
 00013078 T RIT_IRQHandler
-000228d0 t rshift
+000228c8 t rshift
 00012c4c T rtc_get_date_time_str
 00012acc T rtc_gettime
 00012b7c T rtc_init
@@ -499,15 +499,15 @@
 00015c2c T rts_not_full_trace_get
 00015c18 T rts_not_full_trace_init
 00015c40 T rts_not_full_trace_reset
-00023268 T __s2b
+00023260 T __s2b
 000176f4 T _sbrk
-00020008 T _sbrk_r
-00020028 T scanf
-0002426c T _scanf_chars
-0001f8d4 W _scanf_float
-00024334 T _scanf_i
-00024544 T __sccl
-000203ca T __sclose
+0001fffc T _sbrk_r
+0002001c T scanf
+00024264 T _scanf_chars
+0001f8c8 W _scanf_float
+0002432c T _scanf_i
+0002453c T __sccl
+000203be T __sclose
 0001b564 T sd_initialize
 0001b82c T sd_ioctl
 0001b6e0 T sd_read
@@ -518,42 +518,42 @@
 000100cc T __section_table_start
 0001b4b4 T send_cmd
 2007c794 B sensorQ
-0002036a T __seofread
+0002035e T __seofread
 00017930 T __set_BASEPRI
 0001792a T __set_MSP
 00017924 T __set_PSP
-00020058 T setvbuf
-00027b6c T __sf_fake_stderr
-00027b8c T __sf_fake_stdin
-00027bac T __sf_fake_stdout
-00022840 T __sflags
-0001db34 T __sflush_r
-0001de50 T __sfmoreglue
-0001dedc T __sfp
-0001df54 T __sfp_lock_acquire
-0001df56 T __sfp_lock_release
-0001ed94 t __sfputc_r
-0001edc0 T __sfputs_r
-0001de7c T __sinit
-000202ac T siprintf
-000202f4 T siscanf
+0002004c T setvbuf
+00027b3c T __sf_fake_stderr
+00027b5c T __sf_fake_stdin
+00027b7c T __sf_fake_stdout
+00022838 T __sflags
+0001db28 T __sflush_r
+0001de44 T __sfmoreglue
+0001ded0 T __sfp
+0001df48 T __sfp_lock_acquire
+0001df4a T __sfp_lock_release
+0001ed88 t __sfputc_r
+0001edb4 T __sfputs_r
+0001de70 T __sinit
+000202a0 T siprintf
+000202e8 T siscanf
 2007c58c b slot.8318
-0001e59c T __smakebuf_r
+0001e590 T __smakebuf_r
 2007c6e7 b s_next_packet_id.5115
-00020244 T sniprintf
-00020244 T snprintf
+00020238 T sniprintf
+00020238 T snprintf
 00012e68 T spi1_lock
 00012e98 T spi1_unlock
 00010148 W SPI_IRQHandler
 2007c6e8 b s_prev_time_ms.5129
-000202ac T sprintf
+000202a0 T sprintf
 000117e4 t __sputc_r
-0001fdb0 T srand
-00020348 T __sread
-0001fe98 T __srefill_r
-0001ffb0 T __srget_r
-000202f4 T sscanf
-000203a6 T __sseek
+0001fda4 T srand
+0002033c T __sread
+0001fe8c T __srefill_r
+0001ffa4 T __srget_r
+000202e8 T sscanf
+0002039a T __sseek
 00010148 W SSP0_IRQHandler
 00012c60 T ssp1_dma_init
 00012c7c T ssp1_dma_transfer_block
@@ -562,48 +562,48 @@
 00010148 W SSP1_IRQHandler
 0001b344 t ssp1_set_max_clock
 00013c08 t ssp_set_max_clock
-00023978 T __ssputs_r
-00023c92 T __ssrefill_r
-00023ccc T __ssvfiscanf_r
-00023ccc T __ssvfscanf_r
-0001de08 t std.isra.0
-000203d2 T strcasecmp
-0002040e T strcat
-0002042c T strchr
-00020448 T strcmp
-0002045c T strcpy
-0002046c T strlen
-0002047c T strncasecmp
-000204ca T strncmp
-000204ee T strncpy
-00020518 T strrchr
-0002053e T strstr
-000205b8 T _strtod_l
-000211a8 T _strtod_r
-000211c8 T __strtok_r
-0002121a T strtok_r
-00021344 T strtol
-00021220 t _strtol_l.isra.0
-00021320 T _strtol_r
-000246c0 T strtoul
-000245a2 t _strtoul_l.isra.0
-0002469c T _strtoul_r
-0001cd9c T __subdf3
-000246ec T __submore
-0001d1ec T __subsf3
-00020574 t sulp
+00023970 T __ssputs_r
+00023c8a T __ssrefill_r
+00023cc4 T __ssvfiscanf_r
+00023cc4 T __ssvfscanf_r
+0001ddfc t std.isra.0
+000203c6 T strcasecmp
+00020402 T strcat
+00020420 T strchr
+0002043c T strcmp
+00020450 T strcpy
+00020460 T strlen
+00020470 T strncasecmp
+000204be T strncmp
+000204e2 T strncpy
+0002050c T strrchr
+00020532 T strstr
+000205b0 T _strtod_l
+000211a0 T _strtod_r
+000211c0 T __strtok_r
+00021212 T strtok_r
+0002133c T strtol
+00021218 t _strtol_l.isra.0
+00021318 T _strtol_r
+000246b8 T strtoul
+0002459a t _strtoul_l.isra.0
+00024694 T _strtoul_r
+0001cd90 T __subdf3
+000246e4 T __submore
+0001d1e0 T __subsf3
+00020568 t sulp
 00019210 t sum_sfn
-00023c18 T _sungetc_r
-00023a30 T _svfiprintf_r
-00023f74 T __svfiscanf_r
-00023a30 T _svfprintf_r
-00023f74 T __svfscanf_r
-00021900 T __swbuf_r
-0001e554 T __swhatbuf_r
-0002036e T __swrite
-000219e4 T __swsetup_r
-00028000 T __symbol_table_end
-00028000 T __symbol_table_start
+00023c10 T _sungetc_r
+00023a28 T _svfiprintf_r
+00023f6c T __svfiscanf_r
+00023a28 T _svfprintf_r
+00023f6c T __svfscanf_r
+000218f8 T __swbuf_r
+0001e548 T __swhatbuf_r
+00020362 T __swrite
+000219dc T __swsetup_r
+00027fd0 T __symbol_table_end
+00027fd0 T __symbol_table_start
 00019380 t sync_fs
 00019372 t sync_window
 0001932c t sync_window.part.1
@@ -617,16 +617,16 @@
 00017b74 T sys_get_uptime_us
 00017318 T sys_set_inchar_func
 0001730c T sys_set_outchar_func
-00027454 t Tbl
-00027554 t tbl_lower.5775
-00027734 t tbl_upper.5776
-00021370 T time
+0002744c t Tbl
+0002754c t tbl_lower.5775
+0002772c t tbl_upper.5776
+00021368 T time
 00010148 W TIMER0_IRQHandler
 00017bd8 T TIMER1_IRQHandler
 00010148 W TIMER2_IRQHandler
 00010148 W TIMER3_IRQHandler
 2007c7f0 B _timezone
-00027d08 t tinytens
+00027cd8 t tinytens
 00010e22 T tlm_binary_compare_one
 00010e08 T tlm_binary_get_one
 00010df2 T tlm_binary_get_size_one
@@ -650,18 +650,18 @@
 000104f4 T tlm_variable_print_value
 00010234 T tlm_variable_register
 00010308 T tlm_variable_set_value
-00021398 T tolower
-000213b2 T toupper
-0001d144 T __truncdfsf2
-000213cc T __tzcalc_limits
+00021390 T tolower
+000213aa T toupper
+0001d138 T __truncdfsf2
+000213c4 T __tzcalc_limits
 2007c2bc d tzinfo
-0002151c T __tz_lock
+00021514 T __tz_lock
 2007c2b4 D _tzname
 2007c7d0 b __tzname_dst
 2007c7db b __tzname_std
-00021520 T _tzset_unlocked
-0002152c T _tzset_unlocked_r
-0002151e T __tz_unlock
+00021518 T _tzset_unlocked
+00021524 T _tzset_unlocked_r
+00021516 T __tz_unlock
 00010e5c T u0_dbg_printf
 00010e3e T u0_dbg_put
 00017fd0 T uart0_getchar
@@ -672,12 +672,12 @@
 00010148 W UART1_IRQHandler
 00012f00 T UART2_IRQHandler
 00013420 T UART3_IRQHandler
-0001d75c T __udivmoddi4
-000236dc T __ulp
+0001d750 T __udivmoddi4
+000236d4 T __ulp
 2007c4a0 b ulTaskSwitchedInTime
-00024760 T _ungetc_r
+00024758 T _ungetc_r
 000196ca t unlock_fs
-00024d90 T __unorddf2
+00024d88 T __unorddf2
 00010148 W USBAct_IRQHandler
 00010148 W USB_IRQHandler
 2007c3c8 b uxCriticalNesting
@@ -694,14 +694,14 @@
 00016988 T uxTaskResetEventItemValue
 2007c4b4 b uxTopReadyPriority
 00019690 t validate
-0001e6f4 t validate_structure
+0001e6e8 t validate_structure
 000171de T vApplicationIdleHook
 0001721c T vApplicationMallocFailedHook
 000171e4 T vApplicationStackOverflowHook
-0001ede4 T _vfiprintf_r
-0002421c T _vfiscanf_r
-0001ede4 T _vfprintf_r
-0002421c T _vfscanf_r
+0001edd8 T _vfiprintf_r
+00024214 T _vfiscanf_r
+0001edd8 T _vfprintf_r
+00024214 T _vfscanf_r
 00016a58 T vListInitialise
 00016a6e T vListInitialiseItem
 00016a8c T vListInsert
@@ -714,15 +714,15 @@
 00015cb0 T vPortSVCHandler
 00016a20 T vRunTimeStatIsrEntry
 00016a48 T vRunTimeStatIsrExit
-000218ec T vsiscanf
-000218a4 T _vsiscanf_r
-00021888 T vsniprintf
-00021830 T _vsniprintf_r
-00021888 T vsnprintf
-00021830 T _vsnprintf_r
-000218ec T vsscanf
-000218a4 T _vsscanf_r
-0002743e t vst.6347
+000218e4 T vsiscanf
+0002189c T _vsiscanf_r
+00021880 T vsniprintf
+00021828 T _vsniprintf_r
+00021880 T vsnprintf
+00021828 T _vsnprintf_r
+000218e4 T vsscanf
+0002189c T _vsscanf_r
+00027436 t vst.6347
 20083fe0 B _vStackTop
 000163b8 T vTaskDelay
 00016360 T vTaskDelayUntil
@@ -747,7 +747,7 @@
 000190c0 T wireless_init
 0001912c T wireless_service
 0001747c T _write
-000219c0 T _write_r
+000219b8 T _write_r
 2007c4b8 b xDelayedTaskList1
 2007c4cc b xDelayedTaskList2
 00016ada T xEventGroupCreate
@@ -819,10 +819,10 @@
 00014a38 T rmHandler(str&, CharDev&, void*)
 0001c4fc T vConsumer(void*)
 0001c490 T vProducer(void*)
-0001c568 T vWatchDog(void*)
+0001c570 T vWatchDog(void*)
 0001776c T operator delete[](void*)
 00017768 T operator delete(void*)
-0001c87a T operator delete(void*, unsigned int)
+0001c86e T operator delete(void*, unsigned int)
 2007c3b0 b guard variable for getFileHandler(str&, CharDev&, void*)::spBuffer
 2007c3a0 V guard variable for Storage::getSDDrive()::pSDCardDrive
 2007c3a8 V guard variable for Storage::getFlashDrive()::pFlashDrive
@@ -854,7 +854,7 @@
 00013c34 t hl_mount_storage(FileSystemObject&, char const*)
 2007c328 b gRunTaskSemaphore
 0001bb88 t flash_send_op_addr(flash_opcode_t, unsigned long)
-0002792c t LED_DISPLAY_CHARMAP
+00027924 t LED_DISPLAY_CHARMAP
 00017938 t sys_clock_pll0_feed()
 0001bbf4 t flash_wait_for_ready()
 2007c32c b gTaskEntryTaskHandle
@@ -866,17 +866,17 @@
 0001ba68 t flash_perform_page_io_of_fatfs_sector(void (*)(unsigned char*, unsigned long, unsigned long), unsigned char*, unsigned long)
 00011810 t dbg_print(char const*, char const*)
 00011844 t printline(char const*, char const*)
-0001cd58 T __cxxabiv1::__terminate(void (*)())
-0001c6e4 T __cxxabiv1::__class_type_info::~__class_type_info()
-0001c6d0 T __cxxabiv1::__class_type_info::~__class_type_info()
-0001c6d0 T __cxxabiv1::__class_type_info::~__class_type_info()
+0001cd4c T __cxxabiv1::__terminate(void (*)())
+0001c6d8 T __cxxabiv1::__class_type_info::~__class_type_info()
+0001c6c4 T __cxxabiv1::__class_type_info::~__class_type_info()
+0001c6c4 T __cxxabiv1::__class_type_info::~__class_type_info()
 2007c0e0 D __cxxabiv1::__terminate_handler
-0001c788 T __cxxabiv1::__si_class_type_info::~__si_class_type_info()
-0001c774 T __cxxabiv1::__si_class_type_info::~__si_class_type_info()
-0001c774 T __cxxabiv1::__si_class_type_info::~__si_class_type_info()
-0001c8b8 T __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
-0001c8a4 T __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
-0001c8a4 T __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
+0001c77c T __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+0001c768 T __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+0001c768 T __cxxabiv1::__si_class_type_info::~__si_class_type_info()
+0001c8ac T __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
+0001c898 T __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
+0001c898 T __cxxabiv1::__vmi_class_type_info::~__vmi_class_type_info()
 0001c038 W i2c2_device::get16BitRegister(unsigned char)
 0001c02c W i2c2_device::writeReg(unsigned char, unsigned char)
 0001c138 T LED_Display::setLeftDigit(char)
@@ -1037,18 +1037,18 @@
 0001c0a0 T IR_Sensor::decodeIrCode()
 0001c104 T IR_Sensor::init()
 00017764 T operator new[](unsigned int)
-0001c710 T __cxxabiv1::__class_type_info::__do_catch(std::type_info const*, void**, unsigned int) const
-0001c6f8 T __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
-0001c690 T __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void**) const
-0001c73a T __cxxabiv1::__class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
-0001c940 W __cxxabiv1::__class_type_info::__find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
-0001c6c4 T __cxxabiv1::__class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
-0001c850 T __cxxabiv1::__si_class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
-0001c7d4 T __cxxabiv1::__si_class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
-0001c79c T __cxxabiv1::__si_class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
-0001cbfc T __cxxabiv1::__vmi_class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
-0001c96a T __cxxabiv1::__vmi_class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
-0001c8cc T __cxxabiv1::__vmi_class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
+0001c704 T __cxxabiv1::__class_type_info::__do_catch(std::type_info const*, void**, unsigned int) const
+0001c6ec T __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
+0001c684 T __cxxabiv1::__class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void**) const
+0001c72e T __cxxabiv1::__class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+0001c934 W __cxxabiv1::__class_type_info::__find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
+0001c6b8 T __cxxabiv1::__class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
+0001c844 T __cxxabiv1::__si_class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
+0001c7c8 T __cxxabiv1::__si_class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+0001c790 T __cxxabiv1::__si_class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
+0001cbf0 T __cxxabiv1::__vmi_class_type_info::__do_upcast(__cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__upcast_result&) const
+0001c95e T __cxxabiv1::__vmi_class_type_info::__do_dyncast(int, __cxxabiv1::__class_type_info::__sub_kind, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info const*, void const*, __cxxabiv1::__class_type_info::__dyncast_result&) const
+0001c8c0 T __cxxabiv1::__vmi_class_type_info::__do_find_public_src(int, void const*, __cxxabiv1::__class_type_info const*, void const*) const
 00011028 T str::beginsWith(char const*) const
 00010eec T str::getCapacity() const
 00011012 T str::firstIndexOf(char const*) const
@@ -1062,58 +1062,58 @@
 0001120a T str::operator()() const
 0001120e T str::operator int() const
 00011206 T str::operator==(char const*) const
-0001cd28 T std::type_info::__is_pointer_p() const
-0001cd28 T std::type_info::__is_function_p() const
-0001cd2c T std::type_info::operator==(std::type_info const&) const
-0001cd26 T std::type_info::~type_info()
-0001cd26 T std::type_info::~type_info()
+0001cd1c T std::type_info::__is_pointer_p() const
+0001cd1c T std::type_info::__is_function_p() const
+0001cd20 T std::type_info::operator==(std::type_info const&) const
+0001cd1a T std::type_info::~type_info()
+0001cd1a T std::type_info::~type_info()
 00017760 T operator new(unsigned int)
-0001cd60 T std::get_terminate()
-0001cd70 T std::terminate()
-000253c4 T typeinfo for NordicStream
-00025cf8 T typeinfo for terminalTask
-00024fd0 V typeinfo for scheduler_task
-000253bc V typeinfo for SingletonTemplate<NordicStream>
-00025494 V typeinfo for SingletonTemplate<Uart0>
-0002542c V typeinfo for SingletonTemplate<Uart2>
-0002550c V typeinfo for SingletonTemplate<Uart3>
-000254a4 V typeinfo for Uart0
-0002543c V typeinfo for Uart2
-0002551c V typeinfo for Uart3
-00025368 T typeinfo for CharDev
-00025334 T typeinfo for UartDev
-00027a38 T typeinfo for __cxxabiv1::__class_type_info
-00027a94 T typeinfo for __cxxabiv1::__si_class_type_info
-00027af4 T typeinfo for __cxxabiv1::__vmi_class_type_info
-00027b54 T typeinfo for std::type_info
-000253e4 T typeinfo name for NordicStream
-00025d04 T typeinfo name for terminalTask
-00024fbd V typeinfo name for scheduler_task
-00025398 V typeinfo name for SingletonTemplate<NordicStream>
-00025478 V typeinfo name for SingletonTemplate<Uart0>
-00025410 V typeinfo name for SingletonTemplate<Uart2>
-000254f0 V typeinfo name for SingletonTemplate<Uart3>
-0002549c V typeinfo name for Uart0
-00025434 V typeinfo name for Uart2
-00025514 V typeinfo name for Uart3
-00025370 T typeinfo name for CharDev
-00025340 T typeinfo name for UartDev
-00027a44 T typeinfo name for __cxxabiv1::__class_type_info
-00027aa0 T typeinfo name for __cxxabiv1::__si_class_type_info
-00027b00 T typeinfo name for __cxxabiv1::__vmi_class_type_info
-00027b5c T typeinfo name for std::type_info
-000253f4 T vtable for NordicStream
-00025d14 T vtable for terminalTask
-00024fd8 V vtable for scheduler_task
-000254c4 V vtable for Uart0
-0002545c V vtable for Uart2
-0002553c V vtable for Uart3
-0002537c T vtable for CharDev
-0002534c T vtable for UartDev
-00027a68 T vtable for __cxxabiv1::__class_type_info
-00027ac8 T vtable for __cxxabiv1::__si_class_type_info
-00027b28 T vtable for __cxxabiv1::__vmi_class_type_info
-000269ea t logHandler(str&, CharDev&, void*)::__FUNCTION__
+0001cd54 T std::get_terminate()
+0001cd64 T std::terminate()
+000253bc T typeinfo for NordicStream
+00025cf0 T typeinfo for terminalTask
+00024fc8 V typeinfo for scheduler_task
+000253b4 V typeinfo for SingletonTemplate<NordicStream>
+0002548c V typeinfo for SingletonTemplate<Uart0>
+00025424 V typeinfo for SingletonTemplate<Uart2>
+00025504 V typeinfo for SingletonTemplate<Uart3>
+0002549c V typeinfo for Uart0
+00025434 V typeinfo for Uart2
+00025514 V typeinfo for Uart3
+00025360 T typeinfo for CharDev
+0002532c T typeinfo for UartDev
+00027a08 T typeinfo for __cxxabiv1::__class_type_info
+00027a64 T typeinfo for __cxxabiv1::__si_class_type_info
+00027ac4 T typeinfo for __cxxabiv1::__vmi_class_type_info
+00027b24 T typeinfo for std::type_info
+000253dc T typeinfo name for NordicStream
+00025cfc T typeinfo name for terminalTask
+00024fb5 V typeinfo name for scheduler_task
+00025390 V typeinfo name for SingletonTemplate<NordicStream>
+00025470 V typeinfo name for SingletonTemplate<Uart0>
+00025408 V typeinfo name for SingletonTemplate<Uart2>
+000254e8 V typeinfo name for SingletonTemplate<Uart3>
+00025494 V typeinfo name for Uart0
+0002542c V typeinfo name for Uart2
+0002550c V typeinfo name for Uart3
+00025368 T typeinfo name for CharDev
+00025338 T typeinfo name for UartDev
+00027a14 T typeinfo name for __cxxabiv1::__class_type_info
+00027a70 T typeinfo name for __cxxabiv1::__si_class_type_info
+00027ad0 T typeinfo name for __cxxabiv1::__vmi_class_type_info
+00027b2c T typeinfo name for std::type_info
+000253ec T vtable for NordicStream
+00025d0c T vtable for terminalTask
+00024fd0 V vtable for scheduler_task
+000254bc V vtable for Uart0
+00025454 V vtable for Uart2
+00025534 V vtable for Uart3
+00025374 T vtable for CharDev
+00025344 T vtable for UartDev
+00027a38 T vtable for __cxxabiv1::__class_type_info
+00027a98 T vtable for __cxxabiv1::__si_class_type_info
+00027af8 T vtable for __cxxabiv1::__vmi_class_type_info
+000269e2 t logHandler(str&, CharDev&, void*)::__FUNCTION__
 2007c3b4 b getFileHandler(str&, CharDev&, void*)::spBuffer
 2007c3bc b wirelessHandler(str&, CharDev&, void*)::pCmdProcessor
 2007c3a4 V Storage::getSDDrive()::pSDCardDrive

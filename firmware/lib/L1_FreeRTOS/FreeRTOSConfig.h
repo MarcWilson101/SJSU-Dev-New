@@ -126,8 +126,8 @@
 
 /* Run time and task stats gathering related definitions. */
 #define configGENERATE_RUN_TIME_STATS           1       ///< CPU usage utilities
-#define configUSE_TRACE_FACILITY                0       ///< FreeRTOS + Percepio Tracealyzer trace facility
-#define configUSE_STATS_FORMATTING_FUNCTIONS    0       ///< Older FreeRTOS functions
+#define configUSE_TRACE_FACILITY                1       ///< FreeRTOS + Percepio Tracealyzer trace facility
+#define configUSE_STATS_FORMATTING_FUNCTIONS    1       ///< Older FreeRTOS functions
 #define INCLUDE_eTaskGetState                   1       ///< Was needed by the "info" command-line handler
 
 
@@ -146,6 +146,7 @@
 #define INCLUDE_uxTaskGetStackHighWaterMark	1
 #define INCLUDE_xTaskGetSchedulerState      1
 #define INCLUDE_xTaskGetIdleTaskHandle      1
+#define INCLUDE_xTaskGetHandle              1
 
 /* FreeRTOS Timer or daemon task configuration */
 #define configUSE_TIMERS                0                   ///< Enable or disable the FreeRTOS timer task
