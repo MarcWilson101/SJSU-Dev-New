@@ -68,12 +68,12 @@ void LCD::LCDsendCommand(uint8_t command)
  * @param songName . Name of the song to be printed
  * @param nameLength . length of the name of the song. Will all be same length to make easier
  */
-void LCD::LCDsendSongName(char* songName, uint8_t nameLength)
+void LCD::LCDsendSongName(char* songName, uint8_t nameSize)
 {
 	char* ptr = songName;
 	LCDsendCommand(LINE1);
 	ptr++;
-	for (int i = 0; i < nameLength - 2; i++, ptr++) {
+	for (int i = 0; i < nameSize - 2; i++, ptr++) {
 		LCDsendChar(*ptr);
 	}
 }
@@ -86,7 +86,7 @@ void LCD::LCDsendSongName(char* songName, uint8_t nameLength)
 void LCD::LCDsendString(char string[])
 {
 	char* ptr = string;
-	LCDsendCommand(LINE1);
+	LCDsendCommand(LINE2);
 	for (int i = 0; i < strlen(string); i++, ptr++) {
 			LCDsendChar(*ptr);
 	}
@@ -101,11 +101,17 @@ void LCD::LCDinit()
 	I2C2& master = I2C2::getInstance();
 	master.init(10000);
 	LCDsendCommand(0x03);
+	vTaskDelay(100);
 	LCDsendCommand(0x03);
+	vTaskDelay(100);
 	LCDsendCommand(0x03);
+	vTaskDelay(100);
 	LCDsendCommand(0x02);
+	vTaskDelay(100);
 	LCDsendCommand(0x0F);
+	vTaskDelay(100);
 	LCDsendCommand(CLEAR);
+	vTaskDelay(100);
 }
 
 /**
@@ -118,12 +124,12 @@ void LCD::LCDsendVolume(uint8_t volume)
 	I2C2& master = I2C2::getInstance();
 	master.init(100000);
 
-	volume = 15 - (volume / 16); // Volume 0x4E = 11 on volume scale of 1-15
+	//volume = 15 - (volume / 16); // Volume 0x4E = 11 on volume scale of 1-15
 
 	char volumeUpper = (char)((volume / 10) +'0'); // MSB of volume
 	char volumeLower = (char)((volume % 10) + '0'); // LSB of volume
 
-	LCDsendCommand(LINE1);
+	LCDsendCommand(LINE2);
 	char vol[] = "Volume:";
 	LCDsendString(vol);
 	LCDsendChar(volumeUpper);

@@ -46,16 +46,17 @@ void writeVolumeLCD(uint8_t volume);
 
 void tx(void *p)
 {
-	init4Bit();
-    char songptr[] = "what if this is really long";
-	
+	//init4Bit();
+    char playlist[1][19] = {"1:track001.mp3"};
+	uint8_t tracknumber = 0;
+	char *songNamePtr = *(playlist + tracknumber);
     while(1)
     {
         vTaskDelay(5000);
         sendLCDCommand(CLEAR);
-		sendLCDCommand(LINE1);
 		vTaskDelay(1000);
-        sendString(songptr);
+		sendSongName(songNamePtr, 19);
+		writeVolumeLCD(10);
     }
 }
 
@@ -128,7 +129,7 @@ void writeVolumeLCD(uint8_t volume)
 //	u0_dbg_printf("\nWrite Volume up: %x", volumeUp);
 //	u0_dbg_printf("\nWrite Volume low: %x", volumeLow);
 	sendLCDCommand(LINE2);
-	char arr[] = "Volume:";
+	char arr[] = "Vol:";
 	sendString(arr);
 	sendCharacter(volumeUp);
 	sendCharacter(volumeLow);
@@ -160,8 +161,11 @@ void init4Bit() {
 	master.init(10000);
 
 	sendLCDCommand(0x03);
+	//vTaskDelay(5);
 	sendLCDCommand(0x03);
+	//vTaskDelay(5);
 	sendLCDCommand(0x03);
+	//vTaskDelay(5);
 	sendLCDCommand(0x02);
 	sendLCDCommand(0x0F);
 

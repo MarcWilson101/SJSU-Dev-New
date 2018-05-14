@@ -1,4 +1,4 @@
-
+#include <stdio.h>
 #include <mp3SPI.hpp>
 #include <LPC17xx.h>
 

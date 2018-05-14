@@ -1,7 +1,7 @@
 #include <mp3.hpp>
 #include <LPC17xx.h>
 
-void mp3::mp3Init(uint8_t volumeUpper, uint8_t volumeLower)
+void mp3::mp3Init()
 {
     /*Deassert pins*/
     deselectCS();	// deselect chip select signal of VS1053

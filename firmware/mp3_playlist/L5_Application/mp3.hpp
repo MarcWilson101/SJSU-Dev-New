@@ -6,7 +6,7 @@ class mp3
 private:
     
 public:
-    void mp3Init(uint8_t volumeUpper, uint8_t volumeLower);
+    void mp3Init();
 
     bool checkDREQ();
 
